@@ -4,10 +4,11 @@
 .search-div {
 
     display: flex;
-
+    padding-left: 40px;
     input {
        @include basic-input;
        border-radius: 2px;
+       flex-grow: 1;
        &:focus + .search-icon-div{
             height: 36px;
             top: 2px;

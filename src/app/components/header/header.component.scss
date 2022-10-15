@@ -1,0 +1,70 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.header-top-bar {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-top-bar-item-div{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .img-icon-div {
+        width: 16px;
+        height: 16px;
+        img {
+            height: 100%;
+        }
+    p {
+        @include caption
+        }
+    }
+}
+
+.header-div {
+    height: 130px;
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    .logo-div {
+        padding-top: 7px;
+        padding-left: 4px;
+    }
+
+    .header-center-div {
+        margin-top: 22px;
+        min-width: 500px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-icon-div {
+        margin-top: 18px;
+        display: flex;
+        gap: 24px;
+    }
+}
+
+.page-links-div {
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    gap: 32px;
+    .link-div {
+        
+        a {
+            padding: 8px;
+            font-weight: 900;
+            font-size: 14px;
+            line-height: 24px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $greyscale-black;
+        }
+        .active-link {
+            border-bottom: 2px solid $primary-turquoise-dark;
+        }
+    }
+}

@@ -58,3 +58,8 @@ input[type='checkbox'] {
     }
 }
 
+hr {
+    border: none;
+    border-bottom: 1px solid $greyscale-grey;
+    margin: 0 -100px;
+}

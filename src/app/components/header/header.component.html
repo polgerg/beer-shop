@@ -1,0 +1,43 @@
+<div class="header-top-bar">
+    <div class="header-top-bar-item-div">
+        <img src="assets/images/contact.svg" alt="contact">
+        <p>Contact</p>
+    </div>
+    <div class="header-top-bar-item-div">
+        <div class="img-icon-div">
+            <img src="assets/images/maps.svg" alt="maps">
+        </div>
+        <p>EN</p>
+        <div class="img-icon-div">
+            <img src="assets/images/nav-arrow.png" alt="arrow-down">
+        </div>
+    </div>
+</div>
+<hr>
+<div class="header-div">
+    <div class="logo-div">
+        <img src="assets/images/logo.svg" alt="logo">
+    </div>
+    <div class="header-center-div">
+        <div>
+            <app-search-bar [placeholder]="'Search for a beer...'"></app-search-bar>
+        </div>
+        <div class="page-links-div">
+            <div class="link-div">
+                <a routerLink="beers" routerLinkActive="active-link">All Beers</a>
+            </div>
+            <div class="link-div">
+                <a href="#">packages</a>
+            </div>
+            <div class="link-div">
+                <a href="#">Beers</a>
+            </div>
+        </div>
+    </div>
+    <div class="menu-icon-div">
+        <app-menu-item-icon [menuLabel]="'My account'" [imgSrc]="'assets/images/user.png'"></app-menu-item-icon>
+        <app-menu-item-icon [menuLabel]="'Whishlist'" [imgSrc]="'assets/images/turquoise-heart.svg'"></app-menu-item-icon>
+        <app-menu-item-icon [menuLabel]="'Compare'" [imgSrc]="'assets/images/turquoise-compare.svg'"></app-menu-item-icon>
+        <app-menu-item-icon [menuLabel]="'Cart'" [imgSrc]="'assets/images/turquoise-shopping.svg'"></app-menu-item-icon>
+    </div>
+</div>
