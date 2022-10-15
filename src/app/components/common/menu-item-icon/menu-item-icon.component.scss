@@ -1,0 +1,34 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.menu-icon-container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: $greyscale-white;
+
+    .icon-img-div {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    p {
+        @include caption-small
+    }
+    &:hover {
+        color: $primary-turquoise-dark;
+    }
+    &:focus {
+        outline: 0;
+        border: 2px solid $accent-orange;
+    }
+    &:active {
+        color: $primary-turquoise-dark;
+    }
+    
+}

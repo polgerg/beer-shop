@@ -1,0 +1,38 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/variables';
+
+button {
+
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 4px;
+    background-color: $primary-turquoise;
+    color: white;
+    div {
+        width: 24px;
+        height: 24px;
+        object-fit: cover;
+    }
+    
+    img {
+        width: 100%;
+    }
+    label {
+        @include button-label
+    }
+    &:hover {
+        background-color: $primary-turquoise-dark;
+    }
+    &:focus {
+        background-color: $primary-turquoise-dark;
+        outline: none;
+        border: 2px solid $accent-orange;
+        border-radius: 4px;
+
+    }
+}

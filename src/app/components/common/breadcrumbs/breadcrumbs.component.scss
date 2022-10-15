@@ -1,0 +1,19 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/variables';
+
+.breadcrumb-container {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;  
+    gap: 8px;
+    p {
+        @include caption-link
+    }
+    &:hover{
+        text-decoration: underline ;
+    }
+    &:active{
+        @include caption-bold
+    }
+}

@@ -1,0 +1,28 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/variables';
+
+button {
+    height: 40px;
+    text-align: center; 
+    gap: 8px;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 4px;
+    background-color: $greyscale-white;
+    color: $primary-turquoise-dark;
+    font-weight: 900;
+    &:hover {
+        outline: none;
+        background-color: $primary-turquoise-light;
+    }
+    &:active {
+        outline: none;
+        background-color: $primary-turquoise-light;
+        border: 2px solid $accent-orange;
+    }
+    &:disabled {
+        background-color: $greyscale-very-light-grey;
+        color: $greyscale-dark-grey;
+
+    }
+}

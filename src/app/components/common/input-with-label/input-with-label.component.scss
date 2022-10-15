@@ -1,0 +1,16 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+div {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px
+}
+
+label {
+    @include copy-text-standard
+}
+
+input {
+    @include basic-input;
+}

@@ -1,0 +1,31 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.search-div {
+
+    display: flex;
+
+    input {
+       @include basic-input;
+       border-radius: 2px;
+       &:focus + .search-icon-div{
+            height: 36px;
+            top: 2px;
+            right: 42px;
+       }
+    }
+    
+    .search-icon-div {
+        position: relative;
+        right: 41px;
+        top: 1px;
+        border-top-right-radius: 1px;
+        border-bottom-right-radius: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $primary-turquoise;
+        width: 40px;
+        height: 38px;
+    }
+}

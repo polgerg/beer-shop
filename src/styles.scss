@@ -45,3 +45,16 @@ p {
     @include copy-text-standard
 }
 
+input[type='checkbox'] {
+    -webkit-appearance: none;
+	border: 1px solid $greyscale-dark-grey;
+	padding: 6px;
+	border-radius: 1px;
+    &:checked {
+        border: 1px solid $greyscale-black;
+        background-image: url('assets/images/checkbox-checked.svg');
+        background-size: 1.1rem;
+        background-position: center;
+    }
+}
+

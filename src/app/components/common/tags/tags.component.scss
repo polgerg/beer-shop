@@ -1,0 +1,23 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.tag-div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid $greyscale-black;
+    padding: 8px 16px;
+    p{
+        @include copy-text-standard
+    }
+    &:hover {
+        border: 1px solid $primary-turquoise-dark;
+        color: $primary-turquoise-dark;
+    }
+    &:focus {
+        outline: none;
+        border: 2px solid $accent-orange;
+        color: $primary-turquoise-dark;
+    }
+}
