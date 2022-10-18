@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BreadcrumbsComponent implements OnInit {
 
   @Input() label?: string;
+  @Input() type?: string;
   
   constructor() { }
 

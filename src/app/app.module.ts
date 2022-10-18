@@ -7,11 +7,12 @@ import { CartModule } from './components/pages/cart/cart.module';
 import { BeersModule } from './components/pages/beers/beers.module';
 import { SharedModule } from './components/common/shared.module';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
     BeersModule,
     CartModule,
     SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

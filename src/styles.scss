@@ -13,13 +13,13 @@
 h1 {
     font-size: 28px;
     line-height: 36px;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 h2 {
     font-size: 24px;
     line-height: 32px;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 h3 {
@@ -38,7 +38,7 @@ h4 {
 h5 {
     font-size: 16px;
     line-height: 24px;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 p {
@@ -48,12 +48,14 @@ p {
 input[type='checkbox'] {
     -webkit-appearance: none;
 	border: 1px solid $greyscale-dark-grey;
-	padding: 6px;
+	padding: 2px;
 	border-radius: 1px;
+    width: 24px;
+    height: 24px;
     &:checked {
         border: 1px solid $greyscale-black;
         background-image: url('assets/images/checkbox-checked.svg');
-        background-size: 1.1rem;
+        background-repeat: no-repeat;
         background-position: center;
     }
 }
@@ -61,5 +63,51 @@ input[type='checkbox'] {
 hr {
     border: none;
     border-bottom: 1px solid $greyscale-grey;
-    margin: 0 -100px;
+    padding: 0;
+    margin: -16px -100px 55px -100px
 }
+
+.copy-text-standard {
+    @include copy-text-standard
+}
+.copy-text-bold {
+    @include copy-text-bold
+}
+.copy-text-semi-bold{
+    @include copy-text-semi-bold
+}
+.copy-text-uppercase{
+    @include copy-text-uppercase
+}
+.copy-text-standard-link{
+    @include copy-text-standard-link
+}
+.caption{
+    @include caption
+}
+.caption-link{
+    @include caption-link
+}
+.caption-bold{
+    @include caption-bold
+}
+.button-label{
+    @include button-label
+}
+.caption-small{
+    @include caption-small
+}
+.caption-small-bold{
+    @include caption-small-bold
+}
+
+.svg-icon {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+

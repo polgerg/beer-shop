@@ -1,0 +1,11 @@
+<div class="spinner-container">
+    <div class="marks-div">
+        <div class="minus-div" (click)="decreaseQuantity()">
+            <div class="svg-icon minus"></div>
+        </div>
+        <input #spinnerInput class="spinner-input" type="number" value="1" min="1" (change)="setQuantity($event)" >
+        <div class="plus-div" (click)="increaseQuantity()">
+            <div class="svg-icon plus"></div>
+        </div>
+    </div>
+</div>

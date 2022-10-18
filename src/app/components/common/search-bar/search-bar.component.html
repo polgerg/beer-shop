@@ -1,6 +1,8 @@
-<div class="search-div">
-    <input type="text" placeholder="{{placeholder}}">
-    <div class="search-icon-div">
-        <img src="../../../../assets/images/search.png" alt="">
-    </div>
+<div>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-div">
+        <input type="text" placeholder="{{placeholder}}" formControlName="search">
+        <button type="submit" class="search-icon-div">
+            <img src="../../../../assets/images/search.png" alt="">
+        </button>
+    </form>
 </div>

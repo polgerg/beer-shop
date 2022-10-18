@@ -1,0 +1,63 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+h1 {
+    font-weight: 900;
+    line-height: 40px;
+    font-size: 28px;
+    margin: 52px 0;
+}
+
+.text-uppercase {
+    @include copy-text-uppercase;
+}
+
+.copy-text-bold {
+    @include copy-text-bold;
+}
+
+
+
+.beer-list-container {
+    display: inline-grid;
+    grid-column: repeat(13, 1fr);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    
+    .filter-container {
+        width: 302px;
+        grid-column: 1/4;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        .filter-title-div {
+            display: flex;
+            align-items: center;
+            gap: 4px;            
+        }
+        
+        .filter-option-title-div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .checkboxes-container{
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .checkbox-div {
+                display: flex;
+                gap: 4px;
+            }
+        }
+    }
+    
+    .beer-list-div {
+        grid-column: 4/13;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+}

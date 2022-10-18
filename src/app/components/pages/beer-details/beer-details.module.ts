@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BeerDetailsComponent } from './beer-details.component';
 import { BeerDetailsRoutingModule } from './beer-details-routing.module';
+import { SharedModule } from '../../common/shared.module';
 
 
 
@@ -11,7 +12,8 @@ import { BeerDetailsRoutingModule } from './beer-details-routing.module';
   ],
   imports: [
     CommonModule,
-    BeerDetailsRoutingModule
+    BeerDetailsRoutingModule,
+    SharedModule
   ]
 })
 export class BeerDetailsModule { }

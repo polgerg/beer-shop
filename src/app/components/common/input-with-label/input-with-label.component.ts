@@ -1,4 +1,5 @@
 import { Component, Input ,OnInit } from '@angular/core';
+import { FormControl, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-with-label',
@@ -11,6 +12,7 @@ export class InputWithLabelComponent implements OnInit {
   @Input() label?: string;
   @Input() type?: string;
   @Input() placeholder?: string;
+  @Input() inputFormControl?: AbstractControl<any, any> | null;
 
   constructor() { }
 

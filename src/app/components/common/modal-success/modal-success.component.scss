@@ -1,0 +1,17 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.modal-succes-div {
+    background-color: #ebf4e6;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    span {
+        color: $primary-turquoise-dark
+    }
+}

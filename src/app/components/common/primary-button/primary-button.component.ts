@@ -9,6 +9,8 @@ export class PrimaryButtonComponent implements OnInit {
 
   @Input() buttonLabel?: string;
   @Input() imgSrc?: string;
+  @Input() type?: string;
+  @Input() buttonWidth?: string;
 
   constructor() { }
 

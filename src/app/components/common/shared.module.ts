@@ -11,8 +11,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
 import { TagsComponent } from './tags/tags.component';
 import { TextButtonComponent } from './text-button/text-button.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ModalSuccessComponent } from './modal-success/modal-success.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,11 +32,14 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     SecondaryButtonComponent,
     TagsComponent,
     TextButtonComponent,
+    SpinnerComponent,
+    ModalSuccessComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     BreadcrumbsComponent,
@@ -47,6 +53,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     SecondaryButtonComponent,
     TagsComponent,
     TextButtonComponent,
+    SpinnerComponent,
+    ModalSuccessComponent
   ]
 })
 export class SharedModule { }

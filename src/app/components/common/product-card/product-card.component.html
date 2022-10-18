@@ -2,11 +2,16 @@
     <div class="product-card-details-container">
         <div class="top-icons-container">
             <div class="top-icons-div">
-                <div>
-                    <!-- <img src="{{infoBadgeUrl}}" alt="info-badge"> -->
-                    <img src="assets/images/sold-out.png" alt="info-badge">
+                <div *ngIf="beer?.badgeType === 1">
+                    <img src="assets/images/new.png" alt="product-of-the-week-badge">
                 </div>
-                <div>
+                <div *ngIf="beer?.badgeType === 2">
+                    <img src="assets/images/sold-out.png" alt="sold-out-badge">
+                </div>
+                <div *ngIf="beer?.badgeType === 3">
+                    <img src="assets/images/sale.png" alt="sale-badge">
+                </div>
+                <div *ngIf="beer?.productOfTheWeek">
                     <img src="assets/images/product-of-the-week-badge.png" alt="product-of-the-week-badge">
                 </div>
             </div>
@@ -14,36 +19,41 @@
                 <div class="icon-img-div"> 
                     <img src="assets/images/compare.png" alt="compare">
                 </div>
-                <div class="icon-img-div">
+                <div *ngIf="!addedToFavourite" class="icon-img-div" (click)="toggleFavourite(beer!)">
                     <img src="assets/images/black-heart.png" alt="favourite">
+                </div>
+                <div *ngIf="addedToFavourite" class="icon-img-div" (click)="toggleFavourite(beer!)">
+                    <img src="assets/images/heart-filled.svg" alt="favourite">
                 </div>
             </div>
         </div>
-        <div class="product-img-container">
+        <div class="product-img-container" (click)="navigateTo(beer!.id)">
             <div class="product-img-div">
-                <img class="product-img" src="https://images.punkapi.com/v2/234.png" alt="">
+                <img class="product-img" src="{{beer?.image_url}}" alt="">
             </div>
         </div>
         <div>
-            <p class="caption">New england IPA</p>
-            <h5>Fuerst Wiacek Impresario (2022)</h5>
-            <p class="caption">Fuerst Wiacek</p>
+            <p class="caption">{{beer?.tagline}}</p>
+            <h5 (click)="navigateTo(beer!.id)">{{beer?.name}}</h5>
+            <p class="caption">{{beer?.contributed_by}}</p>
         </div>
     </div>
-    <div class="product-price-container">
-        <div class="prices-container">
-            <div class="prices-div">
-                <h2>$7.00</h2>
-                <p class="caption">$14.90</p>
+    <div>
+        <div *ngIf="beer?.badgeType !== 2" class="product-price-container">
+            <div class="prices-container">
+                <div class="prices-div">
+                    <h2>€{{beer?.price}}</h2>
+                    <p *ngIf="beer?.badgeType === 2" class="caption">€{{beer?.originalPrice}}</p>
+                </div>
+                <div *ngIf="beer?.badgeType === 3">
+                    <img src="assets/images/discount.png" alt="discount">
+                </div>
             </div>
-            <div>
-                <img src="assets/images/discount.png" alt="discount">
-            </div>
+            <p class="caption"><span>Content </span>0.44 Liter</p>
         </div>
-        <p class="caption"><span>Content </span>0.44 Liter</p>
-    </div>
-    <div class="cart-container">
-        <input class="quantity-input" type="number" placeholder="1" style="width: 40px; height: 40px; border: 1px solid black">
-        <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Add to cart'" ></app-primary-button>
+        <form *ngIf="beer?.badgeType !== 2" [formGroup]="cartForm" class="cart-container" (ngSubmit)="addToCart()">
+            <input type="number" name="quantity" id="quantity" formControlName="quantity">
+            <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Add to cart'" [type]="'submit'" style="z-index: 200" ></app-primary-button>
+        </form>
     </div>
 </div>

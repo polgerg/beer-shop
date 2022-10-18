@@ -1,1 +1,56 @@
-<p>beers works!</p>
+<div>
+    <app-breadcrumbs [label]="'Home'" [type]="'caption'" routerLink="/beers"></app-breadcrumbs>
+    <app-breadcrumbs [label]="'All Beers'" [type]="'caption-bold'" routerLink="/beers"></app-breadcrumbs>
+</div>
+<h1>All Beers</h1>
+<div class="beer-list-container">
+    <div class="filter-container">
+        <div class="filter-title-div">
+            <div class="img-icon-div">
+                <img src="assets/images/filter.svg" alt="filter-icon">
+            </div>
+            <p class="text-uppercase">filter by</p>
+        </div>
+        <div>
+            <div class="filter-option-title-div" (click)="isTypeFilterVisible = !isTypeFilterVisible">
+                <p class="copy-text-bold">Beer Styles</p>
+                <div *ngIf="isTypeFilterVisible">
+                    <img src="assets/images/arrow-up.svg" alt="arrow-up">
+                </div>
+                <div *ngIf="!isTypeFilterVisible">
+                    <img src="assets/images/nav-arrow-down.svg" alt="arrow-down">
+                </div>
+            </div>
+            <div class="checkboxes-container">
+                <ng-container *ngIf="isTypeFilterVisible">
+                    <div class="checkbox-div" *ngFor="let type of types, let i = index">
+                        <input type="checkbox" (change)="onCheckboxChange($event, type.value)">
+                        <p class="checkbox-label text-uppercase">{{type.name}}</p>  
+                    </div>
+                </ng-container>
+            </div>
+            <!-- <div class="filter-option-title-div" (click)="isTypeFilterVisible = !isTypeFilterVisible">
+                <p class="copy-text-bold">Beer Styles</p>
+                <div *ngIf="isTypeFilterVisible">
+                    <img src="assets/images/arrow-up.svg" alt="arrow-up">
+                </div>
+                <div *ngIf="!isTypeFilterVisible">
+                    <img src="assets/images/nav-arrow-down.svg" alt="arrow-down">
+                </div>
+            </div>
+            <div class="checkboxes-container">
+                <ng-container *ngIf="isTypeFilterVisible">
+                    <div class="checkbox-div" *ngFor="let type of types, let i = index">
+                        <input type="checkbox" (change)="onCheckboxChange($event, type.value)">
+                        <p class="checkbox-label text-uppercase">{{type.name}}</p>  
+                    </div>
+                </ng-container>
+            </div> -->
+        </div>
+    </div>
+    <div class="beer-list-div">
+        <ng-container *ngFor="let beer of beersService.beers$ | async">
+            <app-product-card [beer]="beer"></app-product-card>
+        </ng-container>
+    </div>
+</div>

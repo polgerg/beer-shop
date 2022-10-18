@@ -7,13 +7,26 @@
     justify-content: center;
     align-items: center;  
     gap: 8px;
-    p {
-        @include caption-link
+    .caption {
+        @include caption-link;
+        color: $greyscale-black
     }
+    .caption-bold {
+        @include caption-bold
+    }
+
+    .img-div {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        background-image: url('../../../../assets/images/arrow-right.svg');
+        background-size: cover;
+    }
+
     &:hover{
         text-decoration: underline ;
     }
     &:active{
-        @include caption-bold
+        @include caption-bold;
     }
 }

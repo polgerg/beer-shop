@@ -10,6 +10,9 @@ export class InputComponent implements OnInit {
   @Input() inputId?: string;
   @Input() type?: string;
   @Input() placeholder?: string;
+  @Input() formControlName?: string;
+  @Input() inputWidth?: string;
+  
 
   constructor() { }
 

@@ -1,4 +1,13 @@
 .body-container {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin: auto;
+    max-width: 1484px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding: 0 100px;
+    .header {
+        grid-column: 1/13;
+    }
+    .outlet {
+        grid-column: 1/13;
+    }
 }

@@ -23,13 +23,13 @@ button {
         width: 100%;
     }
 
-    label {
+    p {
         @include button-label
     }
     &:hover {
         background-color: $primary-turquoise-dark;
     }
-    &:focus {
+    &:active {
         background-color: $primary-turquoise-dark;
         outline: none;
         border: 2px solid $accent-orange;

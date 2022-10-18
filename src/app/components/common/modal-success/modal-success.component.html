@@ -1,0 +1,6 @@
+<div *ngIf="isVisible" class="modal-succes-div">
+    <p class="caption">{{text}}<a routerLink="/cart" class="caption-link">{{link}}</a></p>
+    <div (click)="hideModal()">
+        <img src="assets/images/close.svg" alt="close-icon">
+    </div>
+</div>

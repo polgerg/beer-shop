@@ -1,7 +1,7 @@
-<button>
+<button [ngStyle]="{width: buttonWidth ? buttonWidth : null}" type="{{type}}">
     <div *ngIf="imgSrc">
         <img src="{{imgSrc}}" alt="{{buttonLabel}}">
     </div>
-    <label>{{buttonLabel}}</label>
+    <p>{{buttonLabel}}</p>
 </button>
 

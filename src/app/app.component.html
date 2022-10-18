@@ -1,14 +1,8 @@
-<!-- <app-primary-button [buttonLabel]="'Add to cart'" [imgSrc]="'assets/images/shopping.svg'"></app-primary-button>
-<app-primary-button [buttonLabel]="'Add to cart'"></app-primary-button>
-<app-secondary-button [buttonLabel]="'Reset to default'"></app-secondary-button>
-<app-text-button [buttonLabel]="'Reset to default'"></app-text-button>
-<app-search-bar [placeholder]="'Search for a beer...'"></app-search-bar>
-<app-tags [tag]="'Filter Tag'"></app-tags>
-<app-menu-item-icon [imgSrc]="'assets/images/user.png'" [menuLabel]="'My Account'"></app-menu-item-icon>
-<app-breadcrumbs [label]="'Home'"></app-breadcrumbs> -->
-<!-- <app-product-card></app-product-card> -->
-
 <div class="body-container">
-    <app-header></app-header>
-    <router-outlet></router-outlet>
+    <div class="header">
+        <app-header></app-header>
+    </div>
+    <div class="outlet">
+        <router-outlet></router-outlet>
+    </div>
 </div>

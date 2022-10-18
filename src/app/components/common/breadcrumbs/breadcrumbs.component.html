@@ -1,6 +1,6 @@
 <div class="breadcrumb-container">
-    <p>{{label}}</p>
-    <div class="img-div">
-        <img src="assets/images/nav-arrow-down.png" alt="narrow-down">
+    <p [ngClass]="type" >{{label}}</p>
+    <div *ngIf="type !== 'caption-bold'" class="img-div">
+        <!-- <img src="assets/images/arrow-right.svg" alt="arrow-right"> -->
     </div>
 </div>
