@@ -3,7 +3,7 @@
     <app-breadcrumbs [label]="'All Beers'" [type]="'caption'" routerLink="/beers"></app-breadcrumbs>
     <app-breadcrumbs [label]="beer?.name" [type]="'caption-bold'"></app-breadcrumbs>
 </div>
-<app-modal-success [isVisible]="isAddedToCart" text="You added Fuerst Wiacek Entertainment in your " link="shopping cart"></app-modal-success>
+<app-modal-success *ngIf="isAddedToCart" (buttonClick)="setIsAddedToCart()" text="You added Fuerst Wiacek Entertainment in your " link="shopping cart"></app-modal-success>
 <div class="main-container">
     <div class="beer-details-top-grid-container">
         <div class="beer-main-details-container">

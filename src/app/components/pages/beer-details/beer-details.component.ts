@@ -30,6 +30,10 @@ export class BeerDetailsComponent implements OnInit {
     this.isAddedToCart = true
     this.cartService.addToCart(beer, this.quantity)
   }
+
+  setIsAddedToCart(): void {
+    this.isAddedToCart = false;
+  }
 }
 
 
