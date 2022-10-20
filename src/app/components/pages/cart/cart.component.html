@@ -1,1 +1,37 @@
-<p>cart works!</p>
+<div class="breadcrumbs-div">
+    <app-breadcrumbs [label]="'Home'" [type]="'caption'" routerLink="/beers"></app-breadcrumbs>
+    <app-breadcrumbs [label]="'Cart'" [type]="'caption-bold'" routerLink="/cart"></app-breadcrumbs>
+</div>
+<h1>Shopping Cart</h1>
+<h2 *ngIf="cartService.inCart.length === 0">No items in cart yet!</h2>
+<div *ngIf="cartService.inCart.length !== 0" class="cart-main-container">
+    <div class="cart-container">
+        <div class="cart-list-headings">
+            <p class="copy-text-bold product">Product</p>
+            <div></div>
+            <p class="copy-text-bold">Tagline</p>
+            <p class="copy-text-bold text-center">Price</p>
+            <p class="copy-text-bold">Quantity</p>
+            <p class="copy-text-bold text-center">Subtotal</p>
+        </div>
+        <ng-container *ngFor="let cartItem of cartService.inCart; let i = index">
+            <app-cart-item [cartItem]="cartItem"></app-cart-item>
+        </ng-container>
+    </div>
+    <div class="summary">
+        <h4>summary</h4>
+        <p>Free shipping from €500</p>
+        <div>
+            <p class="copy-text-standard dark-grey">Items:</p>
+            <p class="copy-text-standard dark-grey"></p>
+        </div>
+        <div>
+            <p class="copy-text-standard dark-grey">VAT:</p>
+            <p class="copy-text-standard dark-grey"></p>
+        </div>
+        <div>
+            <p class="copy-text-standard dark-grey">Shipping:</p>
+            <p class="copy-text-standard dark-grey"></p>
+        </div>
+    </div>
+</div>

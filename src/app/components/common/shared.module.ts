@@ -16,6 +16,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ModalSuccessComponent } from './modal-success/modal-success.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 
 
@@ -33,7 +34,8 @@ import { RouterModule } from '@angular/router';
     TagsComponent,
     TextButtonComponent,
     SpinnerComponent,
-    ModalSuccessComponent
+    ModalSuccessComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { RouterModule } from '@angular/router';
     TagsComponent,
     TextButtonComponent,
     SpinnerComponent,
-    ModalSuccessComponent
+    ModalSuccessComponent,
+    CartItemComponent
   ]
 })
 export class SharedModule { }

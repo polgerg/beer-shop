@@ -1,0 +1,43 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+
+h1 {
+    font-weight: 900;
+    line-height: 40px;
+    font-size: 28px;
+    margin: 52px 0;
+}
+
+h2 {
+    text-align: center;
+    margin: 52px 0;
+}
+
+.cart-main-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 24px;
+    width: 100%;
+    .cart-list-headings {
+        height: 40px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 3fr 4fr 1fr 2fr 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 0 16px;
+        background-color: $greyscale-very-light-grey;
+        .product {
+            max-width: 30px;
+        }
+        .text-center{
+            text-align: center;
+        }
+    }
+    
+    .summary {
+        padding: 26px 30px 30px 30px;
+        border: 1px solid black;
+    }
+}

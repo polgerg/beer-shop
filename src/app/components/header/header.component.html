@@ -28,10 +28,10 @@
                         <a routerLink="beers" routerLinkActive="active-link">All Beers</a>
                     </div>
                     <div class="link-div">
-                        <a href="#">packages</a>
+                        <a >packages</a>
                     </div>
                     <div class="link-div">
-                        <a href="#">Beer gifts</a>
+                        <a >Beer gifts</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <app-menu-item-icon [menuLabel]="'My account'" [imgSrc]="'assets/images/user.png'"></app-menu-item-icon>
                 <app-menu-item-icon [menuLabel]="'Whishlist (' + beersService.favouriteBeers.length + ')'" [imgSrc]="'assets/images/turquoise-heart.svg'" (click)="showFavourites()"></app-menu-item-icon>
                 <app-menu-item-icon [menuLabel]="'Compare (0)'" [imgSrc]="'assets/images/turquoise-compare.svg'"></app-menu-item-icon>
-                <app-menu-item-icon [menuLabel]="'Cart (' + cartService.inCart.length + ')'" [imgSrc]="'assets/images/turquoise-shopping.svg'"></app-menu-item-icon>
+                <app-menu-item-icon routerLink="/cart" [menuLabel]="'Cart (' + cartService.inCart.length + ')'" [imgSrc]="'assets/images/turquoise-shopping.svg'"></app-menu-item-icon>
             </div>
         </div>
     </div>

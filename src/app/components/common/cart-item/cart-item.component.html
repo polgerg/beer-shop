@@ -1,0 +1,29 @@
+<!-- <div class="cart-item-main-container"> -->
+    <div class="cart-item-container">
+        <div class="product-image-div">
+            <img [src]="cartItem.beer.image_url" alt="beer-image">
+            <div class="svg-icon heart" style="display: none;"></div>
+        </div>
+        <div>
+            <p class="copy-text-semi-bold">{{cartItem.beer.name}}</p>
+            <p class="caption-small">Product-No.: {{cartItem.beer.id}}</p>
+        </div>
+        <div>
+            <p class="caption">{{cartItem.beer.tagline}}</p>
+        </div>
+        <div class="text-center">
+            <p class="copy-text-bold">€{{cartItem.beer.price}}</p>
+            <p class="caption-small">Excl. VAT</p>
+        </div>
+        <div>
+            <app-spinner (inputValue)="setQuantity($event)" [initValue]="cartItem.quantity" [width]="'100%'"></app-spinner>
+        </div>
+        <div class="text-center">
+            <p class="copy-text-bold">€{{subTotal}}</p>
+            <p class="caption-small">Excl. VAT</p>
+        </div>
+    </div>
+    <div class="delete-div">
+        <div class="svg-icon delete" (click)="deleteCartItem()"></div>
+    </div>
+<!-- </div> -->

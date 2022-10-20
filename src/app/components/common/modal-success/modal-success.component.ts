@@ -9,7 +9,6 @@ export class ModalSuccessComponent implements OnInit {
 
   @Input() text?: string;
   @Input() link?: string;
-  // @Input() isVisible?: boolean = false;
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>()
   constructor() { }

@@ -33,7 +33,6 @@ export class ProductCardComponent implements OnInit {
   }
 
 
-
   toggleFavourite(beer: Beer): void {
     if(!this.addedToFavourite) {
       this.beersService.addToFavourites(beer.id)
@@ -48,7 +47,6 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(): void {
-    console.log(this.cartForm.get('quantity')?.value)
     const quantity = this.cartForm.get('quantity')?.value
     this.cartService.addToCart(this.beer!, parseInt(quantity))
   }

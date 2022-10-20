@@ -3,7 +3,7 @@
         <div class="minus-div" (click)="decreaseQuantity()">
             <div class="svg-icon minus"></div>
         </div>
-        <input #spinnerInput class="spinner-input" type="number" value="1" min="1" (change)="setQuantity($event)" >
+        <input #spinnerInput [ngStyle]="width ? {'width': width} : null" class="spinner-input" type="number" value="{{initValue}}" min="1" (change)="setQuantity($event)" >
         <div class="plus-div" (click)="increaseQuantity()">
             <div class="svg-icon plus"></div>
         </div>

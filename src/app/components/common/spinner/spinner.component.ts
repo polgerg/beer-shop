@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
@@ -8,6 +8,8 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '
 export class SpinnerComponent implements OnInit {
 
   @Output() inputValue: EventEmitter<number> = new EventEmitter<number>()
+  @Input() initValue: number = 0
+  @Input() width?: string;
   @ViewChild('spinnerInput') spinnerInput?: ElementRef;
 
   constructor() {
@@ -22,7 +24,7 @@ export class SpinnerComponent implements OnInit {
 
   increaseQuantity() {
     this.spinnerInput!.nativeElement.value++
-    this.inputValue.next(this.spinnerInput!.nativeElement.value)
+    this.inputValue.next(parseInt(this.spinnerInput!.nativeElement.value))
   }
 
   decreaseQuantity(){

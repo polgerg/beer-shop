@@ -38,7 +38,7 @@
                 <p class="caption">Prices incl. VAT plus <a href="#">shipping cost</a> </p>
             </div>
             <div class="add-to-cart-div">
-                <app-spinner (inputValue)="setQuantity($event)"></app-spinner>
+                <app-spinner (inputValue)="setQuantity($event)" [initValue]="1"></app-spinner>
                 <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Add to cart'" [type]="'submit'" [buttonWidth]="'100%'" (click)="addToCart(beer!)" ></app-primary-button>
             </div>
         </div>
