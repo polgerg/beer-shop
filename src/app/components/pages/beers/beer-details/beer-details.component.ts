@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Beer } from 'src/app/models/beer';
 import { BeersService } from 'src/app/services/beers.service';
 import { CartService } from 'src/app/services/cart.service';
+import { RecentlyVisitedService } from 'src/app/services/recently-visited.service';
 
 @Component({
   selector: 'app-beer-details',
@@ -15,11 +16,15 @@ export class BeerDetailsComponent implements OnInit {
   quantity: number = 1
   isAddedToCart: boolean = false;
 
-  constructor(private beersService: BeersService, private cartService: CartService, private route: ActivatedRoute) { }
+  constructor(private beersService: BeersService, private cartService: CartService, private route: ActivatedRoute, private visitedService: RecentlyVisitedService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id']
-    this.beersService.getBeer(id).subscribe(beer => this.beer = beer[0])
+    this.beersService.getBeer(id).subscribe(beer => {
+      this.beer = beer[0]
+      this.visitedService.addToRecentlyVisited(beer[0])
+    })
+    
   }
 
   setQuantity(quantity: any): void {

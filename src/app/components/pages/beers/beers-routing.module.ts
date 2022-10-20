@@ -4,6 +4,7 @@ import { BeersComponent } from './beers.component';
 
 const routes: Routes = [
     { path: '', component: BeersComponent},
+    { path: 'beers/beer-details/:id', loadChildren: ()=> import('./beer-details/beer-details.module').then(module=> module.BeerDetailsModule)},
 ]
   
   @NgModule({

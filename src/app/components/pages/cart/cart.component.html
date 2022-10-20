@@ -45,3 +45,12 @@
         </div>
     </div>
 </div>
+<!-- <hr> -->
+<app-pagination [numberOfDots]="5"></app-pagination>
+<!-- <hr> -->
+<h1>Recently viewed items</h1>
+<div class="beer-list-div">
+    <ng-container *ngFor="let beer of recentlyVisitedService.visitedItems">
+        <app-product-card [beer]="beer"></app-product-card>
+    </ng-container>
+</div>

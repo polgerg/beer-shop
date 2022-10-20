@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -13,7 +14,7 @@ export class CartItemComponent implements OnInit {
 
   subTotal?: number
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     let total = this.cartItem.quantity * this.cartItem.beer.price
@@ -34,5 +35,9 @@ export class CartItemComponent implements OnInit {
     const index = this.cartService.inCart.findIndex(item => item.beer.id === this.cartItem.beer.id);
     this.cartService.inCart.splice(index, 1)
     console.log(this.cartService.inCart)
+  }
+
+  navigateToProduct(id: string): void {
+    this.router.navigate([`beers/beer-details/${id}`])
   }
 }

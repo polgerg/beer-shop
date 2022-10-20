@@ -41,17 +41,19 @@ export class BeersService {
   }
 
   addToFavourites(id: string): void {
+    let wantedBeer = this.favouriteBeers.find(beerId => beerId === id)
+    !wantedBeer &&
     this.favouriteBeers.push(id)
-    // console.log(this.favouriteBeers)
+    console.log(this.favouriteBeers)
   }
 
   removeFromFavourites(id: string): void {
     let i = this.favouriteBeers.findIndex(beerId => beerId === id);
     this.favouriteBeers.splice(i, 1)
     // console.log('asd', this.favouriteBeers)
-    this.getFavouriteBeers().subscribe(beers => {
-      this.beers$.next(beers)
-    })
+    // this.getFavouriteBeers().subscribe(beers => {
+    //   this.beers$.next(beers)
+    // })
   }
 
   getBeersBySearch(value: string): Observable<Beer[]> {
@@ -96,10 +98,11 @@ export class BeersService {
 
   getFavouriteBeers(): Observable<Beer[]> {
     let copyOfFavBeers = this.favouriteBeers
-    let queryParams = copyOfFavBeers.join().replace(',','|')
+    console.log(this.favouriteBeers)
+    let queryParams = copyOfFavBeers.join('|')
     // console.log(copyOfFavBeers)
     // console.log(queryParams)
-    // console.log(`${BASE_URL}beers?ids=${queryParams}`)
+    console.log(`${BASE_URL}beers?ids=${queryParams}`)
     return this.http.get<Beer[]>(`${BASE_URL}beers?ids=${queryParams}`).pipe(
       map((beers: Beer[]) => {
         return beers.map((beer: Beer) => {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BeersService } from '../../../services/beers.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { BeersService } from '../../../services/beers.service';
   templateUrl: './beers.component.html',
   styleUrls: ['./beers.component.scss']
 })
-export class BeersComponent implements OnInit {
+export class BeersComponent implements OnInit, OnDestroy {
 
   types: Array<any> = [
     { name: 'MOSAIC', value: 'Mosaic'},
@@ -17,11 +18,12 @@ export class BeersComponent implements OnInit {
 
   isTypeFilterVisible: boolean = true;
 
-  constructor(public beersService: BeersService) { 
+  constructor(public beersService: BeersService, private route: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
     this.beersService.getBeers().subscribe(beers => {
+      this.route.snapshot.url.length < 1 &&
       this.beersService.beers$.next(beers)
     })
   }
@@ -37,5 +39,12 @@ export class BeersComponent implements OnInit {
     this.beersService.getSelectedBeers(this.selectedBeers).subscribe(beers => {
       this.beersService.beers$.next(beers)
     }) 
+  }
+  ngOnDestroy() {
+    let subscription = this.beersService.getBeers().subscribe(beers => {
+      this.beersService.beers$.next(beers)    
+    })
+    subscription.unsubscribe()
+    
   }
 }

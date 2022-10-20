@@ -17,6 +17,7 @@ import { ModalSuccessComponent } from './modal-success/modal-success.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 
@@ -35,7 +36,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
     TextButtonComponent,
     SpinnerComponent,
     ModalSuccessComponent,
-    CartItemComponent
+    CartItemComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
     TextButtonComponent,
     SpinnerComponent,
     ModalSuccessComponent,
-    CartItemComponent
+    CartItemComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

@@ -20,9 +20,10 @@ export class HeaderComponent implements OnInit {
   }
 
   showFavourites() {
-   this.beersService.getFavouriteBeers().subscribe(beers => {
-    this.beersService.beers$.next(beers)
+    this.beersService.getFavouriteBeers().subscribe(beers => {
+      console.log(beers)
+      this.beersService.beers$.next(beers)
+      this.router.navigate(['beers/whishlist'])
    })
-  //  this.router.navigate(['beers/whislist'])
   }
 }

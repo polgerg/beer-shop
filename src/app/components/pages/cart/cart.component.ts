@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { RecentlyVisitedService } from 'src/app/services/recently-visited.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService, public recentlyVisitedService: RecentlyVisitedService) { }
 
   ngOnInit(): void {
   }

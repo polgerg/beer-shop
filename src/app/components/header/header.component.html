@@ -37,7 +37,7 @@
             </div>
             <div class="menu-icon-div">
                 <app-menu-item-icon [menuLabel]="'My account'" [imgSrc]="'assets/images/user.png'"></app-menu-item-icon>
-                <app-menu-item-icon [menuLabel]="'Whishlist (' + beersService.favouriteBeers.length + ')'" [imgSrc]="'assets/images/turquoise-heart.svg'" (click)="showFavourites()"></app-menu-item-icon>
+                <app-menu-item-icon routerLink="beers/whishlist" [menuLabel]="'Whishlist (' + beersService.favouriteBeers.length + ')'" [imgSrc]="'assets/images/turquoise-heart.svg'" (click)="showFavourites()"></app-menu-item-icon>
                 <app-menu-item-icon [menuLabel]="'Compare (0)'" [imgSrc]="'assets/images/turquoise-compare.svg'"></app-menu-item-icon>
                 <app-menu-item-icon routerLink="/cart" [menuLabel]="'Cart (' + cartService.inCart.length + ')'" [imgSrc]="'assets/images/turquoise-shopping.svg'"></app-menu-item-icon>
             </div>

@@ -63,3 +63,9 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
+
+.beer-list-div {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}

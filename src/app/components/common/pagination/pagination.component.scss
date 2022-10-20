@@ -1,0 +1,41 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.paginator-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .svg-icon.left {
+        width: 24px;
+        height: 24px;
+        background-color: $greyscale-black;
+        mask-image: url("/assets/images/arrow-left.svg");
+    }
+    .svg-icon.left.disabledArrow {
+        background-color: $greyscale-dark-grey;
+    }
+    .svg-icon.right {
+        width: 24px;
+        height: 24px;
+        background-color: $greyscale-black;
+        mask-image: url("/assets/images/arrow-right.svg");
+    }
+    .svg-icon.right.disabledArrow {
+        background-color: $greyscale-dark-grey;
+    }
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+    .selectedDot {
+        border: 1px solid $primary-turquoise-dark;
+        background-color: $primary-turquoise-dark;
+    }
+}
+
+.disabledArrow {
+    background-color: red;
+    height: 100px;
+}

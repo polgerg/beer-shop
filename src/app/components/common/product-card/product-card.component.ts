@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Beer } from 'src/app/models/beer';
@@ -40,10 +40,11 @@ export class ProductCardComponent implements OnInit {
       this.beersService.removeFromFavourites(beer.id);
     }
     this.addedToFavourite = !this.addedToFavourite;
+    console.log(this.beersService.favouriteBeers)
   }
 
   navigateTo(id: string) {
-    this.router.navigate([`beer-details/${id}`])
+    this.router.navigate([`beers/beer-details/${id}`])
   }
 
   addToCart(): void {

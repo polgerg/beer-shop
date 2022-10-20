@@ -1,10 +1,10 @@
 <!-- <div class="cart-item-main-container"> -->
     <div class="cart-item-container">
-        <div class="product-image-div">
+        <div class="product-image-div" (click)="navigateToProduct(cartItem.beer.id)">
             <img [src]="cartItem.beer.image_url" alt="beer-image">
             <div class="svg-icon heart" style="display: none;"></div>
         </div>
-        <div>
+        <div (click)="navigateToProduct(cartItem.beer.id)">
             <p class="copy-text-semi-bold">{{cartItem.beer.name}}</p>
             <p class="caption-small">Product-No.: {{cartItem.beer.id}}</p>
         </div>
