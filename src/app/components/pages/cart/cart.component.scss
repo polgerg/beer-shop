@@ -37,7 +37,29 @@ h2 {
     }
     
     .summary {
-        padding: 26px 30px 30px 30px;
-        border: 1px solid black;
+        background-color: $greyscale-very-light-grey;
+        padding: 26px 32px 3px 32px;
+        .free-shipping-label {
+            margin-top: 7px;
+        }
+        .cart-info-container {
+            border-bottom: 1px solid $greyscale-dark-grey;
+            border-top: 1px solid $greyscale-dark-grey;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 21px;
+            padding-top: 21px;
+            margin-bottom: 21px;
+            margin-top: 21px;
+        }
+        .order-total-div {
+            margin-bottom: 21px;
+        }
     }
+}
+
+.info-flex {
+    display: flex;
+    justify-content: space-between;
 }

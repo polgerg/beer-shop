@@ -18,20 +18,30 @@
             <app-cart-item [cartItem]="cartItem"></app-cart-item>
         </ng-container>
     </div>
-    <div class="summary">
-        <h4>summary</h4>
-        <p>Free shipping from €500</p>
-        <div>
-            <p class="copy-text-standard dark-grey">Items:</p>
-            <p class="copy-text-standard dark-grey"></p>
-        </div>
-        <div>
-            <p class="copy-text-standard dark-grey">VAT:</p>
-            <p class="copy-text-standard dark-grey"></p>
-        </div>
-        <div>
-            <p class="copy-text-standard dark-grey">Shipping:</p>
-            <p class="copy-text-standard dark-grey"></p>
+    <div class="summary-container">
+        <div class="summary">
+            <h4>summary</h4>
+            <p class="free-shipping-label">Free shipping from €500</p>
+            <div class="cart-info-container">
+                <div class="info-flex">
+                    <p class="copy-text-standard dark-grey">Items:</p>
+                    <p class="copy-text-standard dark-grey">€{{getNetSubtotal()}}</p>
+                </div>
+                <div class="info-flex">
+                    <p class="copy-text-standard dark-grey">VAT:</p>
+                    <p class="copy-text-standard dark-grey">€{{calcVAT()}}</p>
+                </div>
+                <div class="info-flex">
+                    <p class="copy-text-standard dark-grey">Shipping & handling:</p>
+                    <p *ngIf="!isFreeShipping()" class="copy-text-standard dark-grey">€10</p>
+                    <p *ngIf="isFreeShipping()" class="copy-text-standard dark-grey">Free</p>
+                </div>
+            </div>
+            <div class="info-flex order-total-div">
+                <h4>oreder total</h4>
+                <h4>€{{getOrderTotal()}}</h4>
+            </div>
+            <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Checkout'" [type]="'text'" [buttonWidth]="'100%'" (click)="checkout()" ></app-primary-button>
         </div>
     </div>
 </div>
