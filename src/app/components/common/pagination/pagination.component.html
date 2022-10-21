@@ -1,7 +1,7 @@
 <div class="paginator-container">
-    <div class="svg-icon left" [ngClass]="{disabledArrow: (selectedPage$ | async) === 1}" (click)="pageDown()"></div>
+    <div class="svg-icon left" [ngClass]="{disabledArrow: (paginatonService.selectedPage$ | async) === 1}" (click)="pageDown()"></div>
     <ng-container *ngFor="let dot of ' '.repeat(numberOfDots).split(''), let x = index">
-        <div class="dot" (click)="selectPage(x)" [ngClass]="{selectedDot: (selectedPage$ | async) === x + 1}" ></div>
+        <div class="dot" (click)="selectPage(x)" [ngClass]="{selectedDot: (paginatonService.selectedPage$ | async) === x + 1}" ></div>
     </ng-container>
-    <div class="svg-icon right" [ngClass]="{disabledArrow: (selectedPage$ | async) === numberOfDots}" (click)="pageUp()"></div>
+    <div class="svg-icon right" [ngClass]="{disabledArrow: (paginatonService.selectedPage$ | async) === numberOfDots}" (click)="pageUp()"></div>
 </div>

@@ -20,4 +20,13 @@
         border: 2px solid $accent-orange;
         color: $primary-turquoise-dark;
     }
+    .svg-icon.close {
+        width: 24px;
+        height: 24px;
+        background-color: $greyscale-black;
+        mask-image: url("/assets/images/close.svg");
+        &:hover {
+            background-color: $primary-turquoise-dark;
+        }
+    }
 }

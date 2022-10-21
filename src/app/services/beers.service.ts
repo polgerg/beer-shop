@@ -16,18 +16,6 @@ export class BeersService {
 
   constructor(private http: HttpClient) { }
 
-  getBeers(): Observable<Beer[]> {
-    return this.http.get<Beer[]>(`${BASE_URL}beers?page=3&per_page=80`).pipe(
-      map((beers: Beer[]) => {
-        return beers.map((beer: Beer) => {
-          let editedBeer = this.beerAdditionalDetailsGenerator(beer)
-          let beerObj = {...beer, editedBeer}
-          return beerObj
-        })
-      })
-    )
-  }
-
   getBeer(id: string): Observable<Beer[]>{
     return this.http.get<Beer[]>(`${BASE_URL}beers?ids=${id}`).pipe(
       map((beers: Beer[]) => {
@@ -40,6 +28,34 @@ export class BeersService {
     )
   }
 
+  getBeers(QueryParams: any): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`${BASE_URL}beers`, {params: QueryParams}).pipe(
+      map((beers: Beer[]) => {
+        return beers.map((beer: Beer) => {
+          let editedBeer = this.beerAdditionalDetailsGenerator(beer)
+          let beerObj = {...beer, editedBeer}
+          return beerObj
+        })
+      })
+      )
+  }
+    
+  getFavouriteBeers(): Observable<Beer[]> {
+    let copyOfFavBeers = this.favouriteBeers
+    console.log(this.favouriteBeers)
+    let queryParams = copyOfFavBeers.join('|')
+    return this.http.get<Beer[]>(`${BASE_URL}beers?ids=${queryParams}`).pipe(
+      map((beers: Beer[]) => {
+      return beers.map((beer: Beer) => {
+        let editedBeer = this.beerAdditionalDetailsGenerator(beer)
+        beer.isFavourite = true;
+        let beerObj = {...beer, editedBeer}
+        return beerObj
+      })
+    })
+    )
+  }
+  
   addToFavourites(id: string): void {
     let wantedBeer = this.favouriteBeers.find(beerId => beerId === id)
     !wantedBeer &&
@@ -50,14 +66,12 @@ export class BeersService {
   removeFromFavourites(id: string): void {
     let i = this.favouriteBeers.findIndex(beerId => beerId === id);
     this.favouriteBeers.splice(i, 1)
-    // console.log('asd', this.favouriteBeers)
-    // this.getFavouriteBeers().subscribe(beers => {
-    //   this.beers$.next(beers)
-    // })
   }
-
-  getBeersBySearch(value: string): Observable<Beer[]> {
-    return this.http.get<Beer[]>(`${BASE_URL}beers?beer_name=${value}`).pipe(
+  
+  // Customers also bought function 
+  getCustomersBeers(pageNumber: number): Observable<Beer[]> {
+    console.log(`${BASE_URL}beers?page=${pageNumber}&per_page=3`)
+    return this.http.get<Beer[]>(`${BASE_URL}beers?page=${pageNumber}&per_page=3`).pipe(
       map((beers: Beer[]) => {
         return beers.map((beer: Beer) => {
           let editedBeer = this.beerAdditionalDetailsGenerator(beer)
@@ -66,25 +80,6 @@ export class BeersService {
         })
       })
     )
-  }
-
-  getSelectedBeers(types: string[]): Observable<Beer[]> {
-    let querys = types.join().replace(',','&')
-    // console.log('types', types)
-    // console.log(querys)
-    // console.log(`${BASE_URL}beers?hops=${querys}`)
-    if(types.length > 0) {
-      return this.http.get<Beer[]>(`${BASE_URL}beers?hops=${querys}`).pipe(
-        map((beers: Beer[]) => {
-          return beers.map((beer: Beer) => {
-          let editedBeer = this.beerAdditionalDetailsGenerator(beer)
-          let beerObj = {...beer, editedBeer}
-          return beerObj
-          })
-        })
-      )
-    } 
-    return this.getBeers()
   }
 
   beerAdditionalDetailsGenerator(beer: Beer): Beer{
@@ -95,23 +90,5 @@ export class BeersService {
     beer.productOfTheWeek = Math.random() < 0.2;
     return beer
   }
-
-  getFavouriteBeers(): Observable<Beer[]> {
-    let copyOfFavBeers = this.favouriteBeers
-    console.log(this.favouriteBeers)
-    let queryParams = copyOfFavBeers.join('|')
-    // console.log(copyOfFavBeers)
-    // console.log(queryParams)
-    console.log(`${BASE_URL}beers?ids=${queryParams}`)
-    return this.http.get<Beer[]>(`${BASE_URL}beers?ids=${queryParams}`).pipe(
-      map((beers: Beer[]) => {
-        return beers.map((beer: Beer) => {
-          let editedBeer = this.beerAdditionalDetailsGenerator(beer)
-          beer.isFavourite = true;
-          let beerObj = {...beer, editedBeer}
-          return beerObj
-        })
-      })
-    )
-  }
 }
+  

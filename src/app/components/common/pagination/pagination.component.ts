@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { PaginationService } from 'src/app/services/pagination.service';
 
 @Component({
   selector: 'app-pagination',
@@ -9,26 +10,27 @@ import { BehaviorSubject } from 'rxjs';
 export class PaginationComponent implements OnInit {
 
   @Input() numberOfDots!: number
-  @Output() selectedPage$: BehaviorSubject<number> = new BehaviorSubject<number>(3)
+  @Input() startingPage!: number
 
-  constructor() { }
+  constructor(public paginatonService: PaginationService) { }
 
   ngOnInit(): void {
+    this.paginatonService.selectedPage$.next(this.startingPage)
   }
 
   selectPage(x: number): void {
-    this.selectedPage$.next(x+1) 
+    this.paginatonService.selectedPage$.next(x+1) 
   }
 
   pageDown() {
-    if(this.selectedPage$.getValue() > 1) {
-      this.selectedPage$.next(this.selectedPage$.getValue() - 1)
+    if(this.paginatonService.selectedPage$.getValue() > 1) {
+      this.paginatonService.selectedPage$.next(this.paginatonService.selectedPage$.getValue() - 1)
     }
   }
 
   pageUp() {
-    if(this.selectedPage$.getValue() < this.numberOfDots) {
-      this.selectedPage$.next(this.selectedPage$.getValue() + 1)
+    if(this.paginatonService.selectedPage$.getValue() < this.numberOfDots) {
+      this.paginatonService.selectedPage$.next(this.paginatonService.selectedPage$.getValue() + 1)
     }
   }
 

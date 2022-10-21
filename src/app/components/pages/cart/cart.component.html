@@ -3,8 +3,7 @@
     <app-breadcrumbs [label]="'Cart'" [type]="'caption-bold'" routerLink="/cart"></app-breadcrumbs>
 </div>
 <h1>Shopping Cart</h1>
-<h2 *ngIf="cartService.inCart.length === 0">No items in cart yet!</h2>
-<div *ngIf="cartService.inCart.length !== 0" class="cart-main-container">
+<div class="cart-main-container">
     <div class="cart-container">
         <div class="cart-list-headings">
             <p class="copy-text-bold product">Product</p>
@@ -14,9 +13,23 @@
             <p class="copy-text-bold">Quantity</p>
             <p class="copy-text-bold text-center">Subtotal</p>
         </div>
+        <h2 *ngIf="cartService.inCart.length === 0" class="no-cart-items">No items in cart yet!</h2>
         <ng-container *ngFor="let cartItem of cartService.inCart; let i = index">
             <app-cart-item [cartItem]="cartItem"></app-cart-item>
         </ng-container>
+        <div>
+            <h1>You might also like...</h1>
+            <div class="list-pagination">
+                <div class="beer-list-div">
+                    <ng-container *ngFor="let CustomerBeer of customerBeers | async">
+                        <app-product-card [beer]="CustomerBeer"></app-product-card>
+                    </ng-container>
+                </div>
+                <div class="pagination">
+                    <app-pagination [numberOfDots]="5" [startingPage]="3"></app-pagination>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="summary-container">
         <div class="summary">
@@ -44,12 +57,12 @@
             <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Checkout'" [type]="'text'" [buttonWidth]="'100%'" (click)="checkout()" ></app-primary-button>
         </div>
     </div>
+    <!-- <hr> -->
 </div>
-<!-- <hr> -->
-<app-pagination [numberOfDots]="5"></app-pagination>
 <!-- <hr> -->
 <h1>Recently viewed items</h1>
 <div class="beer-list-div">
+    <h2 *ngIf="recentlyVisitedService.visitedItems.length === 0">No visited items yet!</h2>
     <ng-container *ngFor="let beer of recentlyVisitedService.visitedItems">
         <app-product-card [beer]="beer"></app-product-card>
     </ng-container>

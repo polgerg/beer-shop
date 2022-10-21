@@ -44,13 +44,35 @@ h1 {
         }
         .checkboxes-container{
             margin-top: 16px;
+            margin-bottom: 16px;
             display: flex;
             flex-direction: column;
             gap: 20px;
             .checkbox-div {
                 display: flex;
                 gap: 4px;
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 24px;
+                    width: 24px;
+                }
             }
+        }
+        .range-div {
+            width: 302px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .reset-button-div {
+            margin-top: 32px;
+            width: 302px;
+            display: flex;
+            justify-content: center;
+
         }
     }
     
@@ -59,5 +81,17 @@ h1 {
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
+        .filter-tags-div {
+            display: flex;
+            height: 30px;
+            background-color: black;
+        }
+        .tag-div {
+            width: 100%;
+        }
+        .tag-div > * {
+            margin-right: 16px;
+            margin-bottom: 16px;
+        }
     }
 }

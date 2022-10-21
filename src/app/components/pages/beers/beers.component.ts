@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { switchMap, tap } from 'rxjs';
+import { FilterService } from 'src/app/services/filter.service';
 import { BeersService } from '../../../services/beers.service';
 
 @Component({
@@ -9,42 +12,71 @@ import { BeersService } from '../../../services/beers.service';
 })
 export class BeersComponent implements OnInit, OnDestroy {
 
-  types: Array<any> = [
-    { name: 'MOSAIC', value: 'Mosaic'},
-    { name: 'SIMCOE', value: 'Simcoe'},
-    { name: 'MOSAIC', value: 'Saaz'},
-  ]
-  selectedBeers: string[] = []
+  isTypeFilter1Visible: boolean = true;
+  isTypeFilter2Visible: boolean = true;
+  isTypeFilter3Visible: boolean = true;
 
-  isTypeFilterVisible: boolean = true;
+  hopsRadio = null;
+  maltsRadio = null;
 
-  constructor(public beersService: BeersService, private route: ActivatedRoute) { 
+  alcoholRangeForm: FormGroup
+
+  constructor(
+    public beersService: BeersService, 
+    private route: ActivatedRoute, 
+    public filterService: FilterService, 
+    private router: Router,
+    public fb: FormBuilder) {
+      this.alcoholRangeForm = fb.group({
+        from: [undefined],
+        until: [undefined]
+      }) 
   }
 
   ngOnInit(): void {
-    this.beersService.getBeers().subscribe(beers => {
-      this.route.snapshot.url.length < 1 &&
-      this.beersService.beers$.next(beers)
-    })
+    this.route.queryParams.pipe(
+      switchMap((params: Params) => {
+        return this.beersService.getBeers(params)
+      }),
+      tap(beers => {
+        this.beersService.beers$.next(beers)
+      })
+    ).subscribe()
   }
 
-  onCheckboxChange(event: any, type: string) {
-    if(event.target.checked) {
-      this.selectedBeers.push(type)
-    } else {
-      const index = this.selectedBeers.findIndex(x => x === type);
-      this.selectedBeers.splice(index, 1)
-    }
-    // console.log(this.selectedBeers)
-    this.beersService.getSelectedBeers(this.selectedBeers).subscribe(beers => {
-      this.beersService.beers$.next(beers)
-    }) 
+  get from(): FormControl {
+    return this.alcoholRangeForm.get('from') as FormControl
   }
+
+  get until(): FormControl {
+    return this.alcoholRangeForm.get('until') as FormControl
+  }
+
+  onAlcoholRangeApply(): void {
+    console.log('valami')
+    this.router.navigate(['/beers'], {queryParams: {abv_gt: this.from.value ? this.from.value : undefined , abv_lt: this.until.value ? this.until.value : undefined}})
+  }
+
+  onFilterChange(type: string, value: string): void {
+      this.router.navigate(['/beers'], {queryParams: {[type]:value}, queryParamsHandling: 'merge' })
+      let x = this.filterService.selectedFilterTags.find(tag => tag === type)
+      !x ? this.filterService.selectedFilterTags.push(type) : null
+  }
+
+  resetToDefaut(): void {
+    this.router.navigate(['/beers'])
+    this.maltsRadio = null;
+    this.hopsRadio = null;
+    this.alcoholRangeForm.get('from')?.setValue(undefined);
+    this.alcoholRangeForm.get('until')?.setValue(undefined); 
+  }
+
+
+
   ngOnDestroy() {
-    let subscription = this.beersService.getBeers().subscribe(beers => {
-      this.beersService.beers$.next(beers)    
-    })
-    subscription.unsubscribe()
-    
+    // let subscription = this.beersService.getBeers().subscribe(beers => {
+    //   this.beersService.beers$.next(beers)    
+    // })
+    // subscription.unsubscribe()
   }
 }

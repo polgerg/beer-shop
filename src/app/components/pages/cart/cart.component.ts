@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { Beer } from 'src/app/models/beer';
+import { BeersService } from 'src/app/services/beers.service';
 import { CartService } from 'src/app/services/cart.service';
+import { PaginationService } from 'src/app/services/pagination.service';
 import { RecentlyVisitedService } from 'src/app/services/recently-visited.service';
 
 @Component({
@@ -9,9 +13,19 @@ import { RecentlyVisitedService } from 'src/app/services/recently-visited.servic
 })
 export class CartComponent implements OnInit {
 
-  constructor(public cartService: CartService, public recentlyVisitedService: RecentlyVisitedService) { }
+  customerBeers: Observable<Beer[]> = new Observable<Beer[]>()
+
+  constructor(
+    public cartService: CartService, 
+    public recentlyVisitedService: RecentlyVisitedService, 
+    private beersService: BeersService,
+    private paginatonService: PaginationService
+  ) { }
 
   ngOnInit(): void {
+    this.paginatonService.selectedPage$.subscribe(page =>{
+      this.customerBeers = this.beersService.getCustomersBeers(page)
+    })
   }
 
   getNetSubtotal(): number{
@@ -25,7 +39,7 @@ export class CartComponent implements OnInit {
   }
 
   isFreeShipping(): boolean {
-    return (this.getNetSubtotal() + this.calcVAT()) >= 500
+    return (this.getNetSubtotal() + this.calcVAT()) >= 500 || this.cartService.inCart.length === 0
   }
 
   getOrderTotal(): number {

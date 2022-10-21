@@ -12,43 +12,67 @@
             <p class="text-uppercase">filter by</p>
         </div>
         <div>
-            <div class="filter-option-title-div" (click)="isTypeFilterVisible = !isTypeFilterVisible">
-                <p class="copy-text-bold">Beer Styles</p>
-                <div *ngIf="isTypeFilterVisible">
+            <div class="filter-option-title-div" (click)="isTypeFilter1Visible = !isTypeFilter1Visible">
+                <p class="copy-text-bold">Hops</p>
+                <div *ngIf="isTypeFilter1Visible">
                     <img src="assets/images/arrow-up.svg" alt="arrow-up">
                 </div>
-                <div *ngIf="!isTypeFilterVisible">
+                <div *ngIf="!isTypeFilter1Visible">
                     <img src="assets/images/nav-arrow-down.svg" alt="arrow-down">
                 </div>
             </div>
             <div class="checkboxes-container">
-                <ng-container *ngIf="isTypeFilterVisible">
-                    <div class="checkbox-div" *ngFor="let type of types, let i = index">
-                        <input type="checkbox" (change)="onCheckboxChange($event, type.value)">
-                        <p class="checkbox-label text-uppercase">{{type.name}}</p>  
+                <ng-container *ngIf="isTypeFilter1Visible">
+                    <div class="checkbox-div" *ngFor="let hops of filterService.filters.hops, let i = index">
+                        <!-- <input type="checkbox" (change)="onCheckboxChange($event, hops.value)"> -->
+                        <input [(ngModel)]="hopsRadio" type="radio" name="hops" [value]="hops.name" (change)="onFilterChange('hops', hops.value)">
+                        <p class="checkbox-label text-uppercase">{{hops.name}}</p>  
                     </div>
                 </ng-container>
             </div>
-            <!-- <div class="filter-option-title-div" (click)="isTypeFilterVisible = !isTypeFilterVisible">
-                <p class="copy-text-bold">Beer Styles</p>
-                <div *ngIf="isTypeFilterVisible">
+            <div class="filter-option-title-div" (click)="isTypeFilter2Visible = !isTypeFilter2Visible">
+                <p class="copy-text-bold">Malts</p>
+                <div *ngIf="isTypeFilter2Visible">
                     <img src="assets/images/arrow-up.svg" alt="arrow-up">
                 </div>
-                <div *ngIf="!isTypeFilterVisible">
+                <div *ngIf="!isTypeFilter2Visible">
                     <img src="assets/images/nav-arrow-down.svg" alt="arrow-down">
                 </div>
             </div>
             <div class="checkboxes-container">
-                <ng-container *ngIf="isTypeFilterVisible">
-                    <div class="checkbox-div" *ngFor="let type of types, let i = index">
-                        <input type="checkbox" (change)="onCheckboxChange($event, type.value)">
-                        <p class="checkbox-label text-uppercase">{{type.name}}</p>  
+                <ng-container *ngIf="isTypeFilter2Visible">
+                    <div class="checkbox-div" *ngFor="let malt of filterService.filters.malts, let i = index">
+                        <input [(ngModel)]="maltsRadio" type="radio" name="malt" [value]="malt.name" (change)="onFilterChange('malt', malt.value)">
+                        <span class="checkmark"></span>
+                        <p class="checkbox-label text-uppercase">{{malt.name}}</p>  
                     </div>
                 </ng-container>
-            </div> -->
+            </div>
+            <div class="filter-option-title-div" (click)="isTypeFilter3Visible = !isTypeFilter3Visible">
+                <p class="copy-text-bold">Alcohol range</p>
+                <div *ngIf="isTypeFilter3Visible">
+                    <img src="assets/images/arrow-up.svg" alt="arrow-up">
+                </div>
+                <div *ngIf="!isTypeFilter3Visible">
+                    <img src="assets/images/nav-arrow-down.svg" alt="arrow-down">
+                </div>
+            </div>
+            <div class="range-div" [formGroup]="alcoholRangeForm">
+                <app-input [inputId]="'from'" [type]="'number'" [placeholder]="'from (%)'" [inputWidth]="'92px'" [control]="this.from"></app-input>
+                <app-input [inputId]="'until'" [type]="'number'" [placeholder]="'until (%)'" [inputWidth]="'92px'" [control]="this.until"></app-input>  
+                <app-text-button [buttonLabel]="'Apply'" (click)="onAlcoholRangeApply()"></app-text-button>
+            </div>
+            <div class="reset-button-div">
+                <app-secondary-button [buttonLabel]="'Reset to default'" (click)="resetToDefaut()"></app-secondary-button>
+            </div>
+
         </div>
     </div>
     <div class="beer-list-div">
+        <div class="tag-div" *ngIf="filterService.selectedFilterTags.length > 0">
+            <p class="caption-bold">Active Filters</p>
+            <app-tags *ngFor="let tag of filterService.selectedFilterTags" [tag]="tag"></app-tags>
+        </div>
         <ng-container *ngFor="let beer of beersService.beers$ | async">
             <app-product-card [beer]="beer"></app-product-card>
         </ng-container>

@@ -35,10 +35,14 @@ h2 {
             text-align: center;
         }
     }
+
+    .no-cart-items {
+        margin-bottom: 300px;
+    }
     
     .summary {
         background-color: $greyscale-very-light-grey;
-        padding: 26px 32px 3px 32px;
+        padding: 26px 32px 32px 32px;
         .free-shipping-label {
             margin-top: 7px;
         }
@@ -64,8 +68,17 @@ h2 {
     justify-content: space-between;
 }
 
+.list-pagination {
+    .pagination{
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
+    }
+}
+
 .beer-list-div {
     display: flex;
     gap: 24px;
     flex-wrap: wrap;
+    min-height: 500px;
 }
