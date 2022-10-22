@@ -5,6 +5,8 @@ import { BeersRoutingModule } from './beers-routing.module';
 import { SharedModule } from '../../common/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+
 @NgModule({
   declarations: [
     BeersComponent
@@ -14,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BeersRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    InfiniteScrollModule
   ]
 })
 export class BeersModule { }
+

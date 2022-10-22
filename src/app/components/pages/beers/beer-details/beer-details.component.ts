@@ -22,6 +22,7 @@ export class BeerDetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id']
     this.beersService.getBeer(id).subscribe(beer => {
       this.beer = beer[0]
+      this.beersService.favouriteBeers$.getValue().find(favBeer => favBeer.id == this.beer!.id ? this.beer!.isFavourite = true : null)
       this.visitedService.addToRecentlyVisited(beer[0])
     })
     
@@ -38,6 +39,16 @@ export class BeerDetailsComponent implements OnInit {
 
   setIsAddedToCart(): void {
     this.isAddedToCart = false;
+  }
+
+  addToFavourites(): void{
+    this.beer!.isFavourite = true;
+    this.beersService.addToFavourites(this.beer!)
+  }
+
+  removeFromFavourites(): void {
+    this.beer!.isFavourite = false;
+    this.beersService.removeFromFavourites(this.beer!.id) 
   }
 }
 

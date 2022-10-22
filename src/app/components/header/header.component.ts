@@ -14,16 +14,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  navigateHome(): void {
-    this.router.navigate(['beers'])
-  }
-
-  showFavourites() {
-    this.beersService.getFavouriteBeers().subscribe(beers => {
-      console.log(beers)
-      this.beersService.beers$.next(beers)
-      this.router.navigate(['beers/whishlist'])
-   })
-  }
 }

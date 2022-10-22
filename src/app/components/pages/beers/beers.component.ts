@@ -16,6 +16,8 @@ export class BeersComponent implements OnInit, OnDestroy {
   isTypeFilter2Visible: boolean = true;
   isTypeFilter3Visible: boolean = true;
 
+  // selector: string = ".main-panel";
+
   hopsRadio = null;
   maltsRadio = null;
 
@@ -39,9 +41,16 @@ export class BeersComponent implements OnInit, OnDestroy {
         return this.beersService.getBeers(params)
       }),
       tap(beers => {
+        beers.forEach(beer => {
+          this.beersService.favouriteBeers$.getValue().find(favBeer => favBeer.id === beer.id ? beer.isFavourite = true : null)
+        })
         this.beersService.beers$.next(beers)
       })
     ).subscribe()
+  }
+
+  onScroll() {
+    this.beersService.getBeers(this.route.queryParams)
   }
 
   get from(): FormControl {

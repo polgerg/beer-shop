@@ -8,6 +8,7 @@ import { BeersModule } from './components/pages/beers/beers.module';
 import { SharedModule } from './components/common/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WhishlistModule } from './components/pages/whishlist/whishlist.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     BeersModule,
     CartModule,
     SharedModule,
-    HttpClientModule
+    WhishlistModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

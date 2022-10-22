@@ -11,13 +11,22 @@
     border-bottom: 1px solid $greyscale-grey;
     padding: 0 16px;
     .product-image-div {
+        position: relative;
         background-color: #f2f2f2;
         height: 62px;
+        margin-right: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
-        img {
+        .product-img {
             height: 52px;
+        }
+        .icon-img-div{
+            position: absolute;
+            top: -20px;
+            right: -12px;
+            width: 24px;
+            height: 24px;
         }
     }
     .copy-text-semi-bold {

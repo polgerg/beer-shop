@@ -1,8 +1,13 @@
 <!-- <div class="cart-item-main-container"> -->
     <div class="cart-item-container">
-        <div class="product-image-div" (click)="navigateToProduct(cartItem.beer.id)">
-            <img [src]="cartItem.beer.image_url" alt="beer-image">
-            <div class="svg-icon heart" style="display: none;"></div>
+        <div class="product-image-div">
+            <img class="product-img" [src]="cartItem.beer.image_url" alt="beer-image" (click)="navigateToProduct(cartItem.beer.id)">
+            <div *ngIf="!cartItem.beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
+                <img src="assets/images/black-heart.png" alt="favourite">
+            </div>
+            <div *ngIf="cartItem.beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
+                <img src="assets/images/heart-filled.svg" alt="favourite">
+            </div>
         </div>
         <div (click)="navigateToProduct(cartItem.beer.id)">
             <p class="copy-text-semi-bold">{{cartItem.beer.name}}</p>

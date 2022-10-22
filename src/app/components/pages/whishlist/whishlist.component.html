@@ -1,0 +1,10 @@
+<div class="breadcrumbs-div">
+    <app-breadcrumbs [label]="'Home'" [type]="'caption'" routerLink="/beers"></app-breadcrumbs>
+    <app-breadcrumbs [label]="'Whishlist'" [type]="'caption-bold'" routerLink="/whishlist"></app-breadcrumbs>
+</div>
+<h1>Whishlist</h1>
+<div class="beer-list">
+    <div *ngFor="let beer of beersService.favouriteBeers$ | async">
+        <app-product-card [beer]="beer"></app-product-card>
+    </div>
+</div>

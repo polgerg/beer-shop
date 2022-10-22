@@ -20,7 +20,7 @@ export class FilterService {
       { name: 'CARAMALT', value: 'Caramalt'},
       { name: 'CHOCOLATE', value: 'Chocolate'},
       { name: 'EXTRA PALE', value: 'Extra Pale'},
-      { name: 'MUNKICH', value: 'Munich'},
+      { name: 'MUNICH', value: 'Munich'},
     ],
   }
 

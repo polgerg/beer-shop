@@ -5,7 +5,7 @@ import { BeersComponent } from './components/pages/beers/beers.component';
 const routes: Routes = [
   { path: '', redirectTo: 'beers', pathMatch: 'full'},
   { path: 'beers', pathMatch: 'full', loadChildren: ()=> import('./components/pages/beers/beers.module').then(module => module.BeersModule) },
-  { path: 'beers/whishlist', component: BeersComponent},
+  { path: 'whishlist', loadChildren:()=> import('./components/pages/whishlist/whishlist.module').then(module=> module.WhishlistModule)},
   { path: 'cart', loadChildren: ()=> import('./components/pages/cart/cart.module').then(module=> module.CartModule)}
 ];
 

@@ -57,7 +57,7 @@
                     <img src="assets/images/nav-arrow-down.svg" alt="arrow-down">
                 </div>
             </div>
-            <div class="range-div" [formGroup]="alcoholRangeForm">
+            <div *ngIf="isTypeFilter3Visible" class="range-div" [formGroup]="alcoholRangeForm">
                 <app-input [inputId]="'from'" [type]="'number'" [placeholder]="'from (%)'" [inputWidth]="'92px'" [control]="this.from"></app-input>
                 <app-input [inputId]="'until'" [type]="'number'" [placeholder]="'until (%)'" [inputWidth]="'92px'" [control]="this.until"></app-input>  
                 <app-text-button [buttonLabel]="'Apply'" (click)="onAlcoholRangeApply()"></app-text-button>
@@ -73,8 +73,14 @@
             <p class="caption-bold">Active Filters</p>
             <app-tags *ngFor="let tag of filterService.selectedFilterTags" [tag]="tag"></app-tags>
         </div>
-        <ng-container *ngFor="let beer of beersService.beers$ | async">
+        <div *ngFor="let beer of beersService.beers$ | async">    
             <app-product-card [beer]="beer"></app-product-card>
-        </ng-container>
+        </div>
+        <div
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll()"
+        ></div>
     </div>
 </div>

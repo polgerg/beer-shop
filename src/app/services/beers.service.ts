@@ -11,7 +11,7 @@ const BASE_URL = environment.baseUrl
 })
 export class BeersService {
 
-  favouriteBeers: string[] = []
+  favouriteBeers$: BehaviorSubject<Beer[]> = new BehaviorSubject<Beer[]>([])
   beers$: BehaviorSubject<Beer[]> = new BehaviorSubject<Beer[]>([])
 
   constructor(private http: HttpClient) { }
@@ -40,32 +40,19 @@ export class BeersService {
       )
   }
     
-  getFavouriteBeers(): Observable<Beer[]> {
-    let copyOfFavBeers = this.favouriteBeers
-    console.log(this.favouriteBeers)
-    let queryParams = copyOfFavBeers.join('|')
-    return this.http.get<Beer[]>(`${BASE_URL}beers?ids=${queryParams}`).pipe(
-      map((beers: Beer[]) => {
-      return beers.map((beer: Beer) => {
-        let editedBeer = this.beerAdditionalDetailsGenerator(beer)
-        beer.isFavourite = true;
-        let beerObj = {...beer, editedBeer}
-        return beerObj
-      })
-    })
-    )
-  }
   
-  addToFavourites(id: string): void {
-    let wantedBeer = this.favouriteBeers.find(beerId => beerId === id)
-    !wantedBeer &&
-    this.favouriteBeers.push(id)
-    console.log(this.favouriteBeers)
+  addToFavourites(beer: Beer): void {
+    let favBeers = this.favouriteBeers$.getValue()
+    let wantedBeer = favBeers.find(favBeer => favBeer.id === beer.id)
+    !wantedBeer ? favBeers.push(beer) : null
+    this.favouriteBeers$.next(favBeers)
   }
 
   removeFromFavourites(id: string): void {
-    let i = this.favouriteBeers.findIndex(beerId => beerId === id);
-    this.favouriteBeers.splice(i, 1)
+    let favBeers = this.favouriteBeers$.getValue()
+    let i = favBeers.findIndex(beer => beer.id === id);
+    favBeers.splice(i, 1)
+    this.favouriteBeers$.next(favBeers)
   }
   
   // Customers also bought function 
@@ -88,6 +75,8 @@ export class BeersService {
     beer.badge? beer.badgeType = Math.floor(Math.random() * 3 + 1) : null;
     beer.badgeType === 3 ? beer.originalPrice = beer.price * 2 : null    
     beer.productOfTheWeek = Math.random() < 0.2;
+    beer.isFavourite = false
+    this.favouriteBeers$.getValue().find(beer => beer.id === beer.id ? beer.isFavourite = true : null)
     return beer
   }
 }

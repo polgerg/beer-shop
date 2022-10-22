@@ -13,34 +13,22 @@ import { BeersService } from '../../../services/beers.service';
 export class ProductCardComponent implements OnInit {
 
   @Input() beer?: Beer
-  addedToFavourite: boolean = false;
+  // addedToFavourite: boolean = false;
 
   cartForm: FormGroup;
 
-  constructor(private beersService: BeersService, private router:Router, fb: FormBuilder, private cartService: CartService) { 
+  constructor(public beersService: BeersService, private router:Router, fb: FormBuilder, private cartService: CartService) { 
     this.cartForm = fb.group({
       quantity: [1]
     })
   }
 
   ngOnInit(): void {
-    // console.log(this.beersService.favouriteBeers)
-    this.beersService.favouriteBeers.find(id => {
-      if(id === this.beer?.id) {
-      this.beer?.isFavourite ? this.addedToFavourite = true : false
+    this.beersService.favouriteBeers$.getValue().find(beer => {
+      if(beer.id === this.beer?.id) {
+      this.beer?.isFavourite ? this.beer.isFavourite = true : false
       }
     }) 
-  }
-
-
-  toggleFavourite(beer: Beer): void {
-    if(!this.addedToFavourite) {
-      this.beersService.addToFavourites(beer.id)
-    } else {
-      this.beersService.removeFromFavourites(beer.id);
-    }
-    this.addedToFavourite = !this.addedToFavourite;
-    console.log(this.beersService.favouriteBeers)
   }
 
   navigateTo(id: string) {
@@ -50,5 +38,15 @@ export class ProductCardComponent implements OnInit {
   addToCart(): void {
     const quantity = this.cartForm.get('quantity')?.value
     this.cartService.addToCart(this.beer!, parseInt(quantity))
+  }
+
+  addToFavourites(): void{
+    this.beer!.isFavourite = true;
+    this.beersService.addToFavourites(this.beer!)
+  }
+
+  removeFromFavourites(): void {
+    this.beer!.isFavourite = false;
+    this.beersService.removeFromFavourites(this.beer!.id) 
   }
 }

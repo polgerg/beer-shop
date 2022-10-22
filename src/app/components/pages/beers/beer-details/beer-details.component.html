@@ -11,8 +11,12 @@
                 <div class="product-img-div">
                     <div class="icon-div">
                         <div class="svg-icon compare"></div>
-                        <div *ngIf="" class="svg-icon heart"></div>
-                        <div class="svg-icon heart"></div>
+                        <div *ngIf="!beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
+                            <img src="assets/images/black-heart.png" alt="favourite">
+                        </div>
+                        <div *ngIf="beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
+                            <img src="assets/images/heart-filled.svg" alt="favourite">
+                        </div>
                     </div>
                     <img class="product-img" src="{{beer?.image_url}}" alt="product-image">
                 </div>

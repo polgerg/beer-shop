@@ -19,10 +19,10 @@
                 <div class="icon-img-div"> 
                     <img src="assets/images/compare.png" alt="compare">
                 </div>
-                <div *ngIf="!addedToFavourite" class="icon-img-div" (click)="toggleFavourite(beer!)">
+                <div *ngIf="!beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
                     <img src="assets/images/black-heart.png" alt="favourite">
                 </div>
-                <div *ngIf="addedToFavourite" class="icon-img-div" (click)="toggleFavourite(beer!)">
+                <div *ngIf="beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
                     <img src="assets/images/heart-filled.svg" alt="favourite">
                 </div>
             </div>

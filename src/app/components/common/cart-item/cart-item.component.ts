@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cart-item';
+import { BeersService } from 'src/app/services/beers.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CartItemComponent implements OnInit {
 
   subTotal?: number
 
-  constructor(private cartService: CartService, private router: Router) { }
+  constructor(private cartService: CartService, private router: Router, private beersService: BeersService) { }
 
   ngOnInit(): void {
     let total = this.cartItem.quantity * this.cartItem.beer.price
@@ -39,5 +40,15 @@ export class CartItemComponent implements OnInit {
 
   navigateToProduct(id: string): void {
     this.router.navigate([`beers/beer-details/${id}`])
+  }
+
+  addToFavourites(): void{
+    this.cartItem.beer!.isFavourite = true;
+    this.beersService.addToFavourites(this.cartItem.beer!)
+  }
+
+  removeFromFavourites(): void {
+    this.cartItem.beer!.isFavourite = false;
+    this.beersService.removeFromFavourites(this.cartItem.beer!.id) 
   }
 }
