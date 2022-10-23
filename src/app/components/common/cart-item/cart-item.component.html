@@ -1,34 +1,34 @@
-<!-- <div class="cart-item-main-container"> -->
-    <div class="cart-item-container">
-        <div class="product-image-div">
-            <img class="product-img" [src]="cartItem.beer.image_url" alt="beer-image" (click)="navigateToProduct(cartItem.beer.id)">
-            <div *ngIf="!cartItem.beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
-                <img src="assets/images/black-heart.png" alt="favourite">
-            </div>
-            <div *ngIf="cartItem.beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
-                <img src="assets/images/heart-filled.svg" alt="favourite">
-            </div>
+
+<div class="cart-item-container">
+    <div class="product-image-div">
+        <img class="product-img" [src]="cartItem.beer.image_url" alt="beer-image" (click)="navigateToProduct(cartItem.beer.id)">
+        <div *ngIf="!cartItem.beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
+            <img src="assets/images/black-heart.png" alt="favourite">
         </div>
-        <div (click)="navigateToProduct(cartItem.beer.id)">
-            <p class="copy-text-semi-bold">{{cartItem.beer.name}}</p>
-            <p class="caption-small">Product-No.: {{cartItem.beer.id}}</p>
-        </div>
-        <div>
-            <p class="caption">{{cartItem.beer.tagline}}</p>
-        </div>
-        <div class="text-center">
-            <p class="copy-text-bold">€{{cartItem.beer.price}}</p>
-            <p class="caption-small">Excl. VAT</p>
-        </div>
-        <div>
-            <app-spinner (inputValue)="setQuantity($event)" [initValue]="cartItem.quantity" [width]="'100%'"></app-spinner>
-        </div>
-        <div class="text-center">
-            <p class="copy-text-bold">€{{subTotal}}</p>
-            <p class="caption-small">Excl. VAT</p>
+        <div *ngIf="cartItem.beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
+            <img src="assets/images/heart-filled.svg" alt="favourite">
         </div>
     </div>
-    <div class="delete-div">
-        <div class="svg-icon delete" (click)="deleteCartItem()"></div>
+    <div (click)="navigateToProduct(cartItem.beer.id)">
+        <p class="copy-text-semi-bold">{{cartItem.beer.name}}</p>
+        <p class="caption-small">Product-No.: {{cartItem.beer.id}}</p>
     </div>
-<!-- </div> -->
+    <div>
+        <p class="caption">{{cartItem.beer.tagline}}</p>
+    </div>
+    <div class="text-center">
+        <p class="copy-text-bold">€{{cartItem.beer.price}}</p>
+        <p class="caption-small">Excl. VAT</p>
+    </div>
+    <div>
+        <app-spinner (inputValue)="setQuantity($event)" [initValue]="cartItem.quantity" [width]="'100%'"></app-spinner>
+    </div>
+    <div class="text-center">
+        <p class="copy-text-bold">€{{subTotal}}</p>
+        <p class="caption-small">Excl. VAT</p>
+    </div>
+</div>
+<div class="delete-div">
+    <div class="svg-icon delete" (click)="deleteCartItem()"></div>
+</div>
+

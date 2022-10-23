@@ -50,7 +50,13 @@ export class BeersComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    this.beersService.getBeers(this.route.queryParams)
+    this.beersService.page++
+    this.beersService.getBeers(this.route.queryParams).subscribe(beers => {
+      console.log(beers)
+      let oldBeers = this.beersService.beers$.getValue()
+      oldBeers.push(...beers)
+      this.beersService.beers$.next(oldBeers)
+    })
   }
 
   get from(): FormControl {
@@ -68,6 +74,7 @@ export class BeersComponent implements OnInit, OnDestroy {
 
   onFilterChange(type: string, value: string): void {
       this.router.navigate(['/beers'], {queryParams: {[type]:value}, queryParamsHandling: 'merge' })
+      this.beersService.page = 1;
       let x = this.filterService.selectedFilterTags.find(tag => tag === type)
       !x ? this.filterService.selectedFilterTags.push(type) : null
   }

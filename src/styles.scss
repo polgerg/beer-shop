@@ -60,6 +60,25 @@ input[type='checkbox'] {
     }
 }
 
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin-right: 8px;
+    // font: inherit;
+    color: black;
+    height: 24px;
+    width: 24px;
+    border: 1px solid black;
+    border-radius: 2px;
+    &:checked {
+        background-image: url('assets/images/checkbox-checked.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+
 hr {
     border: none;
     border-bottom: 1px solid $greyscale-grey;
