@@ -59,7 +59,6 @@ export class BeersService {
   
   // Customers also bought function 
   getCustomersBeers(pageNumber: number): Observable<Beer[]> {
-    console.log(`${BASE_URL}beers?page=${pageNumber}&per_page=3`)
     return this.http.get<Beer[]>(`${BASE_URL}beers?page=${pageNumber}&per_page=3`).pipe(
       map((beers: Beer[]) => {
         return beers.map((beer: Beer) => {

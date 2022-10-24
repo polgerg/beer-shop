@@ -80,6 +80,7 @@ export class BeersComponent implements OnInit, OnDestroy {
     this.router.navigate(['/beers'])
     this.filterService.radios.maltsRadio = null;
     this.filterService.radios.hopsRadio = null;
+    this.filterService.selectedFilterTags = [];
     this.alcoholRangeForm.get('from')?.setValue(undefined);
     this.alcoholRangeForm.get('until')?.setValue(undefined); 
   }

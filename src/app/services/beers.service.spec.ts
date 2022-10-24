@@ -19,7 +19,6 @@ describe('BeersService', () => {
 
   it('should return a beer from the API, with the selected id', waitForAsync (() => {
     service.getBeer('10').subscribe(beer => {
-      console.log(beer[0].id)
       expect(beer[0].name).withContext('the name of the recieved beer from the API should be').toEqual('Bramling X')
     })
   }))

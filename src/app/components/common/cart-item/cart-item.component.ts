@@ -35,7 +35,6 @@ export class CartItemComponent implements OnInit {
   deleteCartItem(): void {
     const index = this.cartService.inCart.findIndex(item => item.beer.id === this.cartItem.beer.id);
     this.cartService.inCart.splice(index, 1)
-    console.log(this.cartService.inCart)
   }
 
   navigateToProduct(id: string): void {
