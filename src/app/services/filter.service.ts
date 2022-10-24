@@ -24,6 +24,11 @@ export class FilterService {
     ],
   }
 
+  radios: any = {
+    "hopsRadio": null,
+    "maltsRadio": null
+  }
+
   selectedFilterTags: string[] = []
 
   constructor() { }

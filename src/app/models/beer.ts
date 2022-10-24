@@ -1,5 +1,4 @@
 export interface Beer {
-   
           "id": string,
           "name": string,
           "price": number,
@@ -13,38 +12,6 @@ export interface Beer {
           "description": string,
           "image_url": string,
           "abv": number,
-          "ibu": number,
-          "target_fg": number,
-          "target_og": number,
-          "ebc": number,
-          "srm": number,
-          "ph": number,
-          "attenuation_level": number,
-          "volume": {
-            "value": number,
-            "unit": string,
-          },
-          "boil_volume": {
-            "value": number,
-            "unit": string,
-          },
-          "method": {
-            "mash_temp": [
-              {
-                "temp": {
-                  "value": number,
-                  "unit": string,
-                },
-                "duration": number,
-              }
-            ],
-            "fermentation": {
-              "temp": {
-                "value": number,
-                "unit": string,
-              }
-            },
-          },
           "ingredients": {
             "malt": any
             "hops": any 
@@ -52,6 +19,5 @@ export interface Beer {
           },
           "food_pairing": any[] | string,
           "brewers_tips": any[] | string,
-          "contributed_by": any[] | string,
-        
+          "contributed_by": any[] | string,      
 }

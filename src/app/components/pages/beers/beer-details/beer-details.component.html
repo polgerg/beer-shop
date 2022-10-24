@@ -12,7 +12,7 @@
                     <div class="icon-div">
                         <div class="svg-icon compare"></div>
                         <div *ngIf="!beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
-                            <img src="assets/images/black-heart.png" alt="favourite">
+                            <img src="assets/images/heart.svg" alt="favourite">
                         </div>
                         <div *ngIf="beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
                             <img src="assets/images/heart-filled.svg" alt="favourite">
@@ -43,7 +43,7 @@
             </div>
             <div class="add-to-cart-div">
                 <app-spinner (inputValue)="setQuantity($event)" [initValue]="1"></app-spinner>
-                <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Add to cart'" [type]="'submit'" [buttonWidth]="'100%'" (click)="addToCart(beer!)" ></app-primary-button>
+                <app-primary-button [imgSrc]="'assets/images/shopping.svg'" [buttonLabel]="'Add to cart'" [type]="'submit'" [buttonWidth]="'100%'" (click)="addToCart(beer!)" ></app-primary-button>
             </div>
         </div>
     </div>
@@ -68,5 +68,17 @@
             </div>
         </div>
     </div>
-
+</div>
+<div class="pagination-container">
+    <h1>You might also like...</h1>
+    <div class="list-pagination">
+        <div class="beer-list-div">
+            <ng-container *ngFor="let CustomerBeer of customerBeers | async">
+                <app-product-card [beer]="CustomerBeer"></app-product-card>
+            </ng-container>
+        </div>
+        <div class="pagination">
+            <app-pagination [numberOfDots]="5" [startingPage]="3"></app-pagination>
+        </div>
+    </div>
 </div>

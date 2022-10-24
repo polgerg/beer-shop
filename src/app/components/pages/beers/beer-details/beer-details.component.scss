@@ -6,97 +6,100 @@
     margin-bottom: 32px;
 }
 
-.beer-details-top-grid-container {
-    display: grid;
-    grid-template-columns: 74.5% 1fr;
-    max-height: 318px;
-    margin-top: 52px;
-    .beer-main-details-container {
-        grid-column: 90.625%;
-        display: flex;
-        gap: 24px;
-        .product-img-container{
-            width: 45%;
-            background-color: #f2f2f2;
-            .product-img-div{
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 318px;
-                object-fit: cover;
-                overflow: hidden !important;
-                .icon-div {
-                    position: absolute;
-                    top: 16px;
-                    right: 18px;
+.main-container {
+    margin-bottom: 64px;
+    .beer-details-top-grid-container {
+        display: grid;
+        grid-template-columns: 74.5% 1fr;
+        max-height: 318px;
+        margin-top: 52px;
+        .beer-main-details-container {
+            grid-column: 90.625%;
+            display: flex;
+            gap: 24px;
+            .product-img-container{
+                width: 45%;
+                background-color: #f2f2f2;
+                .product-img-div{
+                    position: relative;
                     display: flex;
-                    gap: 8px;
-                    .svg-icon.compare {
-                        width: 24px;
-                        height: 24px;
-                        background-color: $greyscale-black;
-                        mask-image: url("/assets/images/compare.svg");
+                    justify-content: center;
+                    align-items: center;
+                    height: 318px;
+                    object-fit: cover;
+                    overflow: hidden !important;
+                    .icon-div {
+                        position: absolute;
+                        top: 16px;
+                        right: 18px;
+                        display: flex;
+                        gap: 8px;
+                        .svg-icon.compare {
+                            width: 24px;
+                            height: 24px;
+                            background-color: $greyscale-black;
+                            mask-image: url("/assets/images/compare.svg");
+                        }
+                        .icon-img-div{
+                            width: 24px;
+                            height: 24px;
+                        }
                     }
-                    .icon-img-div{
-                        width: 24px;
-                        height: 24px;
-                    }
+                    .product-img{
+                        max-height: 240px;
+                    }    
                 }
-                .product-img{
-                    max-height: 240px;
-                }    
             }
-        }
-        .beer-main-details-div{
-            width: 65%;
-            .beer-title-div{
-                display: flex;
-                justify-content: space-between;
-            }
-            .tagline {
-                @include copy-text-standard;
-                color: $greyscale-dark-grey;
-            }
-            .description {
-                margin: 16px 0;
-                text-align: justify;             
-            }
-            .price-div {
-                margin-top: 27px;
-                .caption {
-                    @include caption;
+            .beer-main-details-div{
+                width: 65%;
+                .beer-title-div{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .tagline {
+                    @include copy-text-standard;
                     color: $greyscale-dark-grey;
-                    a {
-                        @include caption-link;
-                        color: $primary-turquoise-dark;
+                }
+                .description {
+                    margin: 16px 0;
+                    text-align: justify;             
+                }
+                .price-div {
+                    margin-top: 27px;
+                    .caption {
+                        @include caption;
+                        color: $greyscale-dark-grey;
+                        a {
+                            @include caption-link;
+                            color: $primary-turquoise-dark;
+                        }
                     }
                 }
             }
         }
-    }
-    .add-to-cart-container{
-        grid-column: 14/17;
-        background-color: #f2f2f2;
-        padding: 24px;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        h4 {
-            margin-top: 18px;
-            margin-bottom: 8px
-        }
-        a {
-            @include caption-link;
-            color: $primary-turquoise-dark;
-        }
-
-        .add-to-cart-div{
+        .add-to-cart-container{
+            grid-column: 14/17;
+            background-color: #f2f2f2;
+            padding: 24px;
+    
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            justify-content: space-between;
+    
+            h4 {
+                margin-top: 18px;
+                margin-bottom: 8px
+            }
+            a {
+                @include caption-link;
+                color: $primary-turquoise-dark;
+            }
+    
+            .add-to-cart-div{
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
         }
     }
 }
@@ -125,6 +128,30 @@
         }
         .copy-text-standard {
             text-align: justify;
+        }
+    }
+}
+
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+        margin-bottom: 16px;
+    }
+    .list-pagination {
+        .beer-list-div {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            min-height: 500px;
+        }
+        .pagination{
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
         }
     }
 }

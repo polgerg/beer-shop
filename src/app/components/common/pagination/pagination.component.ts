@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { PaginationService } from 'src/app/services/pagination.service';
 
 @Component({

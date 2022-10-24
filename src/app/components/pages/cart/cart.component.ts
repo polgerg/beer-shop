@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Beer } from 'src/app/models/beer';
 import { BeersService } from 'src/app/services/beers.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -11,9 +11,10 @@ import { RecentlyVisitedService } from 'src/app/services/recently-visited.servic
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   customerBeers: Observable<Beer[]> = new Observable<Beer[]>()
+  selectedPageSubs?: Subscription;
 
   constructor(
     public cartService: CartService, 
@@ -23,7 +24,7 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.paginatonService.selectedPage$.subscribe(page =>{
+    this.selectedPageSubs = this.paginatonService.selectedPage$.subscribe(page =>{
       this.customerBeers = this.beersService.getCustomersBeers(page)
     })
   }
@@ -48,6 +49,10 @@ export class CartComponent implements OnInit {
 
   checkout() {
     console.log('We will navigate you to the checkout page soon..')
+  }
+
+  ngOnDestroy(): void {
+    this.selectedPageSubs?.unsubscribe()
   }
 
 }

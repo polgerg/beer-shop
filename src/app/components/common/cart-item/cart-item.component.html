@@ -3,7 +3,7 @@
     <div class="product-image-div">
         <img class="product-img" [src]="cartItem.beer.image_url" alt="beer-image" (click)="navigateToProduct(cartItem.beer.id)">
         <div *ngIf="!cartItem.beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
-            <img src="assets/images/black-heart.png" alt="favourite">
+            <img src="assets/images/heart.svg" alt="favourite">
         </div>
         <div *ngIf="cartItem.beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
             <img src="assets/images/heart-filled.svg" alt="favourite">

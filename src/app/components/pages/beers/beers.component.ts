@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { Subscription, switchMap, tap } from 'rxjs';
 import { FilterService } from 'src/app/services/filter.service';
 import { BeersService } from '../../../services/beers.service';
 
@@ -16,10 +16,7 @@ export class BeersComponent implements OnInit, OnDestroy {
   isTypeFilter2Visible: boolean = true;
   isTypeFilter3Visible: boolean = true;
 
-  // selector: string = ".main-panel";
-
-  hopsRadio = null;
-  maltsRadio = null;
+  getBeersSubs?: Subscription;
 
   alcoholRangeForm: FormGroup
 
@@ -36,7 +33,7 @@ export class BeersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.pipe(
+    this.getBeersSubs = this.route.queryParams.pipe(
       switchMap((params: Params) => {
         return this.beersService.getBeers(params)
       }),
@@ -50,13 +47,14 @@ export class BeersComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    this.beersService.page++
-    this.beersService.getBeers(this.route.queryParams).subscribe(beers => {
-      console.log(beers)
-      let oldBeers = this.beersService.beers$.getValue()
-      oldBeers.push(...beers)
-      this.beersService.beers$.next(oldBeers)
-    })
+    if(this.beersService.beers$.getValue().length % this.beersService.per_page === 0) {
+      this.beersService.page++
+      this.beersService.getBeers(this.route.queryParams).subscribe(beers => {
+        let oldBeers = this.beersService.beers$.getValue()
+        oldBeers.push(...beers)
+        this.beersService.beers$.next(oldBeers)
+      })
+    }
   }
 
   get from(): FormControl {
@@ -68,7 +66,6 @@ export class BeersComponent implements OnInit, OnDestroy {
   }
 
   onAlcoholRangeApply(): void {
-    console.log('valami')
     this.router.navigate(['/beers'], {queryParams: {abv_gt: this.from.value ? this.from.value : undefined , abv_lt: this.until.value ? this.until.value : undefined}})
   }
 
@@ -81,18 +78,13 @@ export class BeersComponent implements OnInit, OnDestroy {
 
   resetToDefaut(): void {
     this.router.navigate(['/beers'])
-    this.maltsRadio = null;
-    this.hopsRadio = null;
+    this.filterService.radios.maltsRadio = null;
+    this.filterService.radios.hopsRadio = null;
     this.alcoholRangeForm.get('from')?.setValue(undefined);
     this.alcoholRangeForm.get('until')?.setValue(undefined); 
   }
 
-
-
   ngOnDestroy() {
-    // let subscription = this.beersService.getBeers().subscribe(beers => {
-    //   this.beersService.beers$.next(beers)    
-    // })
-    // subscription.unsubscribe()
+    this.getBeersSubs?.unsubscribe()
   }
 }

@@ -3,6 +3,7 @@
     <app-breadcrumbs [label]="'Whishlist'" [type]="'caption-bold'" routerLink="/whishlist"></app-breadcrumbs>
 </div>
 <h1>Whishlist</h1>
+<h2 *ngIf="beersService.favouriteBeers$.getValue().length === 0" class="no-cart-items">No items in whishlist yet!</h2>
 <div class="beer-list">
     <div *ngFor="let beer of beersService.favouriteBeers$ | async">
         <app-product-card [beer]="beer"></app-product-card>

@@ -1,5 +1,5 @@
 import { Component, Input ,OnInit } from '@angular/core';
-import { FormControl, AbstractControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-with-label',

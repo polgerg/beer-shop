@@ -14,6 +14,7 @@ export class BeersService {
   favouriteBeers$: BehaviorSubject<Beer[]> = new BehaviorSubject<Beer[]>([])
   beers$: BehaviorSubject<Beer[]> = new BehaviorSubject<Beer[]>([])
   page: number = 1
+  per_page: number = 12;
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +31,7 @@ export class BeersService {
   }
 
   getBeers(queryParams: any): Observable<Beer[]> {
-    return this.http.get<Beer[]>(`${BASE_URL}beers?page=${this.page}&per_page=12`, {params: queryParams}).pipe(
+    return this.http.get<Beer[]>(`${BASE_URL}beers?page=${this.page}&per_page=${this.per_page}`, {params: queryParams}).pipe(
       map((beers: Beer[]) => {
         return beers.map((beer: Beer) => {
           let editedBeer = this.beerAdditionalDetailsGenerator(beer)

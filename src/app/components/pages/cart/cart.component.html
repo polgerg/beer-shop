@@ -54,12 +54,10 @@
                 <h4>order total</h4>
                 <h4>€{{getOrderTotal()}}</h4>
             </div>
-            <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Checkout'" [type]="'text'" [buttonWidth]="'100%'" (click)="checkout()" ></app-primary-button>
+            <app-primary-button [imgSrc]="'assets/images/shopping.svg'" [buttonLabel]="'Checkout'" [type]="'text'" [buttonWidth]="'100%'" (click)="checkout()" ></app-primary-button>
         </div>
     </div>
-    <!-- <hr> -->
 </div>
-<!-- <hr> -->
 <h1>Recently viewed items</h1>
 <div class="beer-list-div">
     <h2 *ngIf="recentlyVisitedService.visitedItems.length === 0">No visited items yet!</h2>

@@ -3,24 +3,24 @@
         <div class="top-icons-container">
             <div class="top-icons-div">
                 <div *ngIf="beer?.badgeType === 1">
-                    <img src="assets/images/new.png" alt="product-of-the-week-badge">
+                    <img src="assets/images/new.svg" alt="new-badge">
                 </div>
                 <div *ngIf="beer?.badgeType === 2">
-                    <img src="assets/images/sold-out.png" alt="sold-out-badge">
+                    <img src="assets/images/sold-out.svg" alt="sold-out-badge">
                 </div>
                 <div *ngIf="beer?.badgeType === 3">
-                    <img src="assets/images/sale.png" alt="sale-badge">
+                    <img src="assets/images/sale.svg" alt="sale-badge">
                 </div>
                 <div *ngIf="beer?.productOfTheWeek">
-                    <img src="assets/images/product-of-the-week-badge.png" alt="product-of-the-week-badge">
+                    <img src="assets/images/product-of-the-week-badge.svg" alt="product-of-the-week-badge">
                 </div>
             </div>
             <div class="top-icons-div top-icons-div-right">
                 <div class="icon-img-div"> 
-                    <img src="assets/images/compare.png" alt="compare">
+                    <img src="assets/images/compare.svg" alt="compare">
                 </div>
                 <div *ngIf="!beer?.isFavourite" class="icon-img-div" (click)="addToFavourites()">
-                    <img src="assets/images/black-heart.png" alt="favourite">
+                    <img src="assets/images/heart.svg" alt="favourite">
                 </div>
                 <div *ngIf="beer?.isFavourite" class="icon-img-div" (click)="removeFromFavourites()">
                     <img src="assets/images/heart-filled.svg" alt="favourite">
@@ -46,14 +46,14 @@
                     <p *ngIf="beer?.badgeType === 2" class="caption">€{{beer?.originalPrice}}</p>
                 </div>
                 <div *ngIf="beer?.badgeType === 3">
-                    <img src="assets/images/discount.png" alt="discount">
+                    <img src="assets/images/discount.svg" alt="discount">
                 </div>
             </div>
             <p class="caption"><span>Content </span>0.44 Liter</p>
         </div>
         <form *ngIf="beer?.badgeType !== 2" [formGroup]="cartForm" class="cart-container" (ngSubmit)="addToCart()">
             <input type="number" name="quantity" id="quantity" formControlName="quantity">
-            <app-primary-button [imgSrc]="'assets/images/shopping-cart.png'" [buttonLabel]="'Add to cart'" [type]="'submit'" style="z-index: 200" ></app-primary-button>
+            <app-primary-button [imgSrc]="'assets/images/shopping.svg'" [buttonLabel]="'Add to cart'" [type]="'submit'" style="z-index: 200" ></app-primary-button>
         </form>
     </div>
 </div>

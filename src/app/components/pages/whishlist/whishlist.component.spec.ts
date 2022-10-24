@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WhishlistComponent } from './whishlist.component';
@@ -8,7 +9,8 @@ describe('WhishlistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WhishlistComponent ]
+      declarations: [ WhishlistComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
 
